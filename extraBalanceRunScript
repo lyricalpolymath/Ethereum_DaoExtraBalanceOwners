@@ -1,0 +1,40 @@
+#!/bin/sh
+
+# Shell script that allows to save the output of a geth console to a text file
+# solutions inspired by http://ethereum.stackexchange.com/questions/7339/how-to-parse-the-ethereum-blockchain-and-save-the-output-to-a-file-geth-console/7347#7347
+# IMPORTANT
+#     save this file and change the permissions to allow to execute it
+#            $ chmod 700 fileName
+#
+# USAGE
+#
+# simple - write to a text file with the default parameters
+#   $ ./extraBalanceRunScript > output.txt
+#
+# with parameters - You can run multiple copies of the shell script at the same time, for example:
+# "0" will be the value for the variable FIRSTBLOCK   and "999999999" the value for the variable LASTBLOCK
+#     $ ./extraBalanceRunScript 0 999999 > output0.txt &
+#     $ ./extraBalanceRunScript 1000000 1999999 > output1.txt &
+#     $ ./extraBalanceRunScript 2000000 2999999 > output2.txt &
+#
+
+
+FIRSTBLOCK=${1:-1520861}
+#LASTBLOCK=${2:-1520890}  #try 30 blocks first
+LASTBLOCK=${2:-1599205}
+
+
+# exclude from the output, any lines before "STARTWORD" and "LASTWORD"
+# this helps get rid of the starting lines of the console,
+# but it is also a convenient utility to move up or down  in the  the lines to output to a given file
+geth attach << EOF | sed -n '/STARTWORD/,/ENDWORD/p'
+
+    # register here the variables passed by the parameter
+    var INJECTEDPARAM_BLOCK1    = $FIRSTBLOCK
+    var INJECTEDPARAM_BLOCKLAST = $LASTBLOCK
+    var INJECTEDPARAM_SHELLSCRIPT = true
+
+    # now load and execute the script so that you can have a clean js file with the output
+    loadScript('./extraBalanceOwners.js')
+
+EOF
