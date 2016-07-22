@@ -1,8 +1,21 @@
 /**
 execute it like this
-$ geth --exec 'loadScript("path/to/extraBalanceOwners.js")' attach
+OLD VERSION WITHOUT NODE $ geth --exec 'loadScript("path/to/extraBalanceOwners.js")' attach
+NEW NODE VERSION 
+1 - install all dependencies
+	$ npm install
+2- ensure you've run the geth node with rpc active like so
+	$ geth --rpc
+3- run the script in node
+   $ node path/to/extraBalanceOwners.js
 */
 
+
+var Web3 = require('web3');
+var BigNumber = require('bignumber.js');
+
+
+//----------------------------------------------
 
 var theDAO = "0xbb9bc244d798123fde783fcc1c72d3bb8c189413";
 var theDAOExtraBalanceAddress = "0x807640a13483f8ac783c557fcdf27be11ea4ac7a" 
@@ -13,20 +26,34 @@ var theDAOExtraBalanceAddress = "0x807640a13483f8ac783c557fcdf27be11ea4ac7a"
 // first extrabalance transaction on May-15-2016 09:00:16 AM
 // last transaction before DAO Token Creation expiry, before May 28th 9:00 AM UTC
 // all transactions are visible in Etherescan between pages 
-// https://etherscan.io/txs?a=0xbb9bc244d798123fde783fcc1c72d3bb8c189413&p=2044  
-//and  https://etherscan.io/txs?a=0xbb9bc244d798123fde783fcc1c72d3bb8c189413&p=1467
+//      https://etherscan.io/txs?a=0xbb9bc244d798123fde783fcc1c72d3bb8c189413&p=2044  
+// and  https://etherscan.io/txs?a=0xbb9bc244d798123fde783fcc1c72d3bb8c189413&p=1467
 var higherCostTXOne = "0xb989cba5fad84d78e305909bf97605dc35b3cb6caf0e32a2009c3a2dda876003"
 var higherCostTXLast = "0x39e8a89762ed719c8812595f262a20276bf3a3ea9a0c9259a140296e5fbaa7da"
 
 // The blocks that contain the first and last transaction that own extrabalance
-var blockOne  = 1520861  // https://etherscan.io/block/1520861
-var blockLast = 1599205  // https://etherscan.io/block/1599205
-var totBlocks = blockLast - blockOne  //78.344 Blocks to parse
+var blockOne  = 1520861  				// https://etherscan.io/block/1520861
+var blockLast = 1599205  				// https://etherscan.io/block/1599205
+var totBlocks = blockLast - blockOne  	//78.344 Blocks to parse
                         
-var theDAOExtraTransactions = []    // pure list of transactions that have generated extrabalance and that can be conveniently parsed again
-var theDAOExtraOwners = {}			// a full object containing all the addresses of the extra balance owners + their transactions
+var theDAOExtraTransactions = []    	// pure list of transactions that have generated extrabalance and that can be conveniently parsed again
+var theDAOExtraOwners = {}				// a full object containing all the addresses of the extra balance owners + their transactions
 
-var ethDivisor = 100000000000000000000;                           
+var ethDivisor = 100000000000000000000; 
+
+
+// WEB3 Initialization for Node
+var web3;
+console.log("web3.1: " + web3)
+if (typeof web3 !== 'undefined') {
+  web3 = new Web3(web3.currentProvider);
+} else {
+  // set the provider you want from Web3.providers
+  web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+}
+console.log("web3.2: " + web3) 
+
+                          
 
 
 //returns a clean time object to store along with the transaction
@@ -61,7 +88,7 @@ function parseExtraBalanceOwnersAndTransaction( startBlock, endBlock) {
 
     //retrieve the block - the "true" boolean will return all transactions as objects so that you can parse them
 	// https://github.com/ethereum/wiki/wiki/JavaScript-API#web3ethgetblock
-    var block = eth.getBlock(i, true);
+    var block = web3.eth.getBlock(i, true);
      
 	//go through every transaction and look for those that have TO the DAO
 	if (block != null && block.transactions != null) {
@@ -93,10 +120,16 @@ function parseExtraBalanceOwnersAndTransaction( startBlock, endBlock) {
 				
 				//first time we encounter this sending address, 
 				//create an object and store it in the list of ExtraOwners
+				//+ store only some of the info of the transaction to save space
+				//+ Bignumber management in js https://github.com/ethereum/wiki/wiki/JavaScript-API#a-note-on-big-numbers-in-web3js
 				var newAddress = {
 					address: tx.from,
-					balanceTot: new BigNumber(tx.value),
-					transactions: [tx.hash] 			//store only the hash to save space
+					balanceTot: new BigNumber(tx.value), 
+					transactions: [{
+						hash: tx.hash,
+						time: tx.time,
+						value: tx.value,
+						}] 			 
 				} 
 				theDAOExtraOwners[from] = newAddress;			
 			  
@@ -105,11 +138,10 @@ function parseExtraBalanceOwnersAndTransaction( startBlock, endBlock) {
 				// simply add this transaction to his list and add the balance
 				
 				// but first let's check that the balance math works and output an error if the sum doesn't work (there are problems using the ethDivisor)
-				// https://github.com/ethereum/wiki/wiki/JavaScript-API#a-note-on-big-numbers-in-web3js
 				var newValue = new BigNumber(tx.value);
 				var oldBalance = theDAOExtraOwners[from].balanceTot;  		//it is already a BigNumber
 				var newBalance = oldBalance.plus(newValue);				
-				var test = newBalance.eq( oldBalance.plus(newValue) )
+				//var test = newBalance.eq( oldBalance.plus(newValue) )
 				//console.log("typeof oldBalance " + typeof(oldBalance));
 				//console.log("\n\n---found a previous owner " + from + "\n oldBalance: " + oldBalance + " + " + newValue + " == newBalance: " + newBalance + " >>> " +  test);
 				//console.log("tx.value: " + tx.value + " BigNumber(tx.value): " + newValue);
@@ -118,8 +150,12 @@ function parseExtraBalanceOwnersAndTransaction( startBlock, endBlock) {
 				
 				// ACHTUNG: we are adding the eth balance but this number does not tell us when he bought it and in what increase step his tokens belong to
 				// this only tells us a total amount of ether that he has put in
-				theDAOExtraOwners[from].transactions.push(tx.hash);
-				theDAOExtraOwners[from].balanceTot = newBalance; 
+				theDAOExtraOwners[from].balanceTot = newBalance;
+				theDAOExtraOwners[from].transactions.push({
+						hash: tx.hash,
+					 	time: tx.time,
+				        value: tx.value,
+						});
 				
 			}
 		
@@ -181,7 +217,18 @@ parseExtraBalanceOwnersAndTransaction(blockOne, (blockOne+30))
 //trace it to console 
 console.log("\n\n------------------\n SIMPLE OWNERS \n------------------") 
 var simpleOwners = getSimpleOwners();
-console.log("Simplifief Owners and Balance: ", JSON.stringify(simpleOwners, null, 0));
+//console.log("Simplifief Owners and Balance: ", JSON.stringify(simpleOwners, null, 0));
+  
+/* TESTING > output to file
+var fs = require('fs');
+fs.writeFile("simpleOwners.txt", simpleOwners, function(err) {
+    if(err) {
+        return console.log(err);
+    }
+
+    console.log("The file was saved!");
+});
+*/
 
 
 //console.log("\n\n------------------\n FULL OWNERS \n------------------") 

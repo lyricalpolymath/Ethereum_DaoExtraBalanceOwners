@@ -1,0 +1,30 @@
+{
+  "name": "dao-extra-balance-owners",
+  "version": "1.0.0",
+  "description": "extracts the Addresses that have rights to the DAO ExtraBalance",
+  "main": "extraBalanceOwners.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lyricalpolymath/Ethereum_DaoExtraBalanceOwners.git"
+  },
+  "keywords": [
+    "Ethereum",
+    "DAO",
+    "ExtraBalance",
+    "web3",
+    "Blockchain",
+    "parsing"
+  ],
+  "author": "Beltran Berrocal http://twitter.com/lyricalpolymath",
+  "license": "CC-BY-NC-SA-4.0",
+  "bugs": {
+    "url": "https://github.com/lyricalpolymath/Ethereum_DaoExtraBalanceOwners/issues"
+  },
+  "homepage": "https://github.com/lyricalpolymath/Ethereum_DaoExtraBalanceOwners#readme",
+  "dependencies": {
+    "web3": "^0.16.0"
+  }
+}
