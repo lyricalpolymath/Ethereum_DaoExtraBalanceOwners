@@ -1,1 +1,0 @@
-module.exports = { test : "---------------- TEST REQUIREMENT HERE ---------------" }

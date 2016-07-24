@@ -1,13 +1,40 @@
 /**
-execute it like this
-OLD VERSION WITHOUT NODE $ geth --exec 'loadScript("path/to/extraBalanceOwners.js")' attach
-NEW NODE VERSION
-1 - install all dependencies
-	$ npm install
-2- ensure you've run the geth node with rpc active like so
-	$ geth --rpc
-3- run the script in node
-   $ node path/to/extraBalanceOwners.js
+DAO EXTRA BALANCE OWNERS
+parses the Ethereum Blockchain and extracts the **Addresses that have rights to the DAO ExtraBalance** because they bought DAO Tokens between May-15-2016 09:00:16 AM UTC and May 28th 9:00 AM UTC, the end of the DAO Token Creation period.
+
+read the README file file for the 3 ways in which you can run this script
+
+    Copyright (C) 2016  Beltran Berrocal <b25zero1@gmail.com> <@lyricalpolymath>
+    https://github.com/lyricalpolymath/Ethereum_DaoExtraBalanceOwners
+
+    LICENCE (GNU AGPL)
+    This file is part of extraBalanceOwners.
+
+    extraBalanceOwners is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License (AGPL) as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    extraBalanceOwners is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU AGPL General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with extraBalanceOwners.  If not, see <https://www.gnu.org/licenses/agpl.txt>.
+
+    If your software can interact with users remotely through a computer
+    network, you should also make sure that it provides a way for users to
+    get its source.  For example, if your program is a web application, its
+    interface could display a "Source" link that leads users to an archive
+    of the code.  There are many ways you could offer source, and different
+    solutions will be better for different programs; see section 13 for the
+    specific requirements.
+
+      You should also get your employer (if you work as a programmer) or school,
+    if any, to sign a "copyright disclaimer" for the program, if necessary.
+    For more information on this, and how to apply and follow the GNU AGPL, see
+    <http://www.gnu.org/licenses/>.
 */
 
 console.log("STARTWORD");
@@ -22,14 +49,16 @@ if (typeof module !== 'undefined' && module.exports) {
   isNode = true;
 }
 
-
+//console.log("INJECTEDPARAM_BLOCK1: " + INJECTEDPARAM_BLOCK1)
+//console.log("INJECTEDPARAM_BLOCKLAST: " + INJECTEDPARAM_BLOCKLAST)
+//console.log("INJECTEDPARAM_SHELLSCRIPT: " + INJECTEDPARAM_SHELLSCRIPT)
 
 
 //----------------------------------------------
 
 // if parseAll = true it will parse all 78.344 blocks and it will take a long time
 // set it to false and the max amount of Blocks you want to parse for development purposes
-var parseAll = false;
+var parseAll = true;
 var parseMaxNBlocks = 20;
 
 var theDAO = "0xbb9bc244d798123fde783fcc1c72d3bb8c189413";
@@ -292,6 +321,7 @@ var stats = getStats()
 console.log(JSON.stringify(stats, null, 8));
 
 
+// recognizes if it's node and will save the files to the output folder
 if (isNode) {
   console.log("\n\n------------------\n FILES \n------------------")
   saveToFile("outputs/stats.txt", stats, true);
@@ -306,7 +336,7 @@ if (isNode) {
   saveToFile("outputs/ExtraBalanceTransactions.txt", theDAOExtraTransactions);
 
 } else {
-  //output to the console
+  //it's not Node output to the console
   console.log("\n\n------------------\n SIMPLE OWNERS \n------------------")
   simpleOwners = getSimpleOwners();
   console.log("Simplifief Owners and Balance: ", JSON.stringify(simpleOwners, null, 0));

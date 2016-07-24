@@ -1,0 +1,20 @@
+/*-------------------------------------------
+	STATS for the running script
+	copy pasted by hand and rearranged from the output-full.txt
+---------------------------------------------*/	
+
+ 
+There are 10.335 unique addresses that own balance in the extrabalance, 
+having bought DAO creation Tokens after the first Price Phase Increase
+over 28.843 different transactions
+
+{
+        "addresses": 10335,
+        "transactions": 28843
+        "totalEther": "17157.23376000618746551331",
+        
+		"parsedBlocks": 78344,
+        "duration": "02:09:44.2",
+        "startTime": "Sat, 23 Jul 2016 05:59:32 UTC",
+		"endTime": "Sat, 23 Jul 2016 08:09:16 UTC",               
+}
