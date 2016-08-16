@@ -1,0 +1,77 @@
+#!/bin/sh
+
+
+# DAO EXTRA BALANCE OWNERS - SHELL SCRIPT
+# Shell script that allows to save the output of a geth console to a text file
+#
+# solutions inspired by http://ethereum.stackexchange.com/questions/7339/how-to-parse-the-ethereum-blockchain-and-save-the-output-to-a-file-geth-console/7347#7347
+# https://github.com/lyricalpolymath/Ethereum_DaoExtraBalanceOwners
+# IMPORTANT
+#     save this file and change the permissions to allow to execute it
+#            $ chmod 700 fileName
+#
+# USAGE
+#
+# simple - write to a text file with the default parameters
+#   $ ./extraBalanceRunScript > output.txt
+#
+# with parameters - You can run multiple copies of the shell script at the same time, for example:
+# "0" will be the value for the variable FIRSTBLOCK   and "999999999" the value for the variable LASTBLOCK
+#     $ ./extraBalanceRunScript 0 999999 > output0.txt &
+#     $ ./extraBalanceRunScript 1000000 1999999 > output1.txt &
+#     $ ./extraBalanceRunScript 2000000 2999999 > output2.txt &
+#
+#
+#     Copyright (C) 2016  Beltran Berrocal <b25zero1@gmail.com> <@lyricalpolymath>
+#
+#    LICENCE (GNU AGPL)
+#    This file is part of extraBalanceOwners.
+#
+#    extraBalanceOwners is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License (AGPL) as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    extraBalanceOwners is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU AGPL General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with extraBalanceOwners.  If not, see <https://www.gnu.org/licenses/agpl.txt>.
+#
+#    If your software can interact with users remotely through a computer
+#    network, you should also make sure that it provides a way for users to
+#    get its source.  For example, if your program is a web application, its
+#    interface could display a "Source" link that leads users to an archive
+#    of the code.  There are many ways you could offer source, and different
+#    solutions will be better for different programs; see section 13 for the
+#    specific requirements.
+#
+#      You should also get your employer (if you work as a programmer) or school,
+#    if any, to sign a "copyright disclaimer" for the program, if necessary.
+#    For more information on this, and how to apply and follow the GNU AGPL, see
+#    <http://www.gnu.org/licenses/>.
+
+
+FIRSTBLOCK=${1:-1520861}
+#LASTBLOCK=${2:-1520890}  #try 30 blocks first
+LASTBLOCK=${2:-1599205}
+
+
+# exclude from the output, any lines before "STARTWORD" and "LASTWORD"
+# this helps get rid of the starting lines of the console,
+# but it is also a convenient utility to move up or down  in the  the lines to output to a given file
+geth attach << EOF | sed -n '/STARTWORD/,/ENDWORD/p'
+
+    # register here the variables passed by the parameter
+    # so that you can change the blocks parsed (between 0 and 9999999 ) by calling the script like this
+    # $ ./extraBalanceRunScript 0 999999 > output0.txt
+    var INJECTEDPARAM_BLOCK1    = $FIRSTBLOCK
+    var INJECTEDPARAM_BLOCKLAST = $LASTBLOCK
+    var INJECTEDPARAM_SHELLSCRIPT = true
+
+    # now load and execute the script so that you can have a clean js file with the output
+    loadScript('./extraBalanceOwners.js')
+
+EOF

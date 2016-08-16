@@ -1,0 +1,1747 @@
+//------------------
+// LOGS DONE 
+//------------------
+//RESULT - num of events logged: 22608 - duration: 01:58:32.1
+//RESULT - num of Transactions belonging to the 140 addresses: 251
+//nickEth - is the value assigned by Nick
+
+
+//------------------
+// 140 KNOWN SMART CONTRACT ADDRESSES  
+//------------------
+var nick140Addresses =  {
+    "0x01861c6dfab20bae0fa4ee698912630697d78ce4": {
+        "address": "0x01861c6dfab20bae0fa4ee698912630697d78ce4",
+        "isContract": true,
+        "nickEth": "280000000000000000001",
+        "transactions": [
+            {
+                "hash": "0xca5de508c79be7e6625537610aae201c0ca41bf5e8b553f3decca887aaa62cb3"
+            }
+        ]
+    },
+    "0x025abad6de060f94cc6c9a98d4e7637f97288f08": {
+        "address": "0x025abad6de060f94cc6c9a98d4e7637f97288f08",
+        "isContract": true,
+        "nickEth": "6333333333333333333",
+        "transactions": [
+            {
+                "hash": "0x9b9cc86509f86070edea8761c6e36e704e988fb57962838716df6746d2031303"
+            }
+        ]
+    },
+    "0x04abc82be0261ae91e82644a7447d2602a8f57a2": {
+        "address": "0x04abc82be0261ae91e82644a7447d2602a8f57a2",
+        "isContract": true,
+        "nickEth": "323076923076923077",
+        "transactions": [
+            {
+                "hash": "0x128df6ddcf0c9b212371580e3fe7013b721327f9fe5d4e2f4cd16c69b9ba025f"
+            }
+        ]
+    },
+    "0x050f81ae80a07542a70bb52f15895e347164f867": {
+        "address": "0x050f81ae80a07542a70bb52f15895e347164f867",
+        "isContract": true,
+        "nickEth": "18666666666666666667",
+        "transactions": [
+            {
+                "hash": "0x694d35e8cacd209636e042e09681491ee82f15424e55db1e23fe7146af2337ad"
+            }
+        ]
+    },
+    "0x05a8f364c1748b248c6e170d131bed179382e037": {
+        "address": "0x05a8f364c1748b248c6e170d131bed179382e037",
+        "isContract": true,
+        "nickEth": "1850000000000000001",
+        "transactions": [
+            {
+                "hash": "0xe232cb770649b64ed6bcd689f397bd2cebb8f21db5e07f1dee505f982d03c705"
+            },
+            {
+                "hash": "0x2df462694c1d54a5d6b7c97ca0a8d3e14fa6fb608f494526805c9e81e687f846"
+            },
+            {
+                "hash": "0x5af9314571577cba996c57ea3a1500d6272a87695e13654dd2bef50291fc984b"
+            }
+        ]
+    },
+    "0x063d09bcd46a14b1d39a2480d7d244837efce8bf": {
+        "address": "0x063d09bcd46a14b1d39a2480d7d244837efce8bf",
+        "isContract": true,
+        "nickEth": "4434325236923076924",
+        "transactions": [
+            {
+                "hash": "0x8308f27d7e8171f9dc67ef23dbb4c9b6e6cc098b6b4610f666dc8bd77456b60a"
+            }
+        ]
+    },
+    "0x06c4b04d9fc47c1bb85c7e01b57cc03ea9d4f8a5": {
+        "address": "0x06c4b04d9fc47c1bb85c7e01b57cc03ea9d4f8a5",
+        "isContract": true,
+        "nickEth": "83333333333333334",
+        "transactions": [
+            {
+                "hash": "0x96e2e0286caff95ae1cf30c90608a6422789f06b937c85ac72ea743c40d4ebbb"
+            }
+        ]
+    },
+    "0x08ae2870a5d338bcb534b5de8464d2fa57da00aa": {
+        "address": "0x08ae2870a5d338bcb534b5de8464d2fa57da00aa",
+        "isContract": true,
+        "nickEth": "30140000000000000001",
+        "transactions": [
+            {
+                "hash": "0xb5122b18682d0d5d8a319404db7a2a678b64818bded99eda6614423d3a1b4315"
+            },
+            {
+                "hash": "0x075d189269332c28f3d4dccf2b7f2da7d7053e64ae50331bd49f1057f2bf2cfb"
+            }
+        ]
+    },
+    "0x09d8f059b83e663b1c7e8b03406c2620a5620d6a": {
+        "address": "0x09d8f059b83e663b1c7e8b03406c2620a5620d6a",
+        "isContract": true,
+        "nickEth": "142857142857142858",
+        "transactions": [
+            {
+                "hash": "0xc802c4f52620e39edff54415c6d829d9fabd78542c3ba2c354841296857768c7"
+            },
+            {
+                "hash": "0x2310ff495ee0f2c89a396cb692a99c9c1b7c6280cab3c39d175b7a85f16d69fc"
+            },
+            {
+                "hash": "0x0e0afdd8a25d87e390c7c2ec6c9e86ef652614330666c8d2dbd80b36307603b8"
+            }
+        ]
+    },
+    "0x0aeb6b902f8e7fee53a7255e86f7dad30314ebc2": {
+        "address": "0x0aeb6b902f8e7fee53a7255e86f7dad30314ebc2",
+        "isContract": true,
+        "nickEth": "16581985304000000000",
+        "transactions": [
+            {
+                "hash": "0x90a8a4188b20dc36c8958294ac21af131cfacae6c4674ee20937030361d3d55d"
+            }
+        ]
+    },
+    "0x0b8ae27b2c92b1cd950208d7d8522287333462c4": {
+        "address": "0x0b8ae27b2c92b1cd950208d7d8522287333462c4",
+        "isContract": true,
+        "nickEth": "1649575716363636364",
+        "transactions": [
+            {
+                "hash": "0x7a5a35807f39416cfe28e981c252dae7604d833866fa6fdeca93bac953eb86d3"
+            },
+            {
+                "hash": "0xafb8d08ad61f8d92623e6465b7c620a34439299f839eeddf87a08168957f7409"
+            }
+        ]
+    },
+    "0x0c392d32e14a054223c940affc941f4ea6cfe548": {
+        "address": "0x0c392d32e14a054223c940affc941f4ea6cfe548",
+        "isContract": true,
+        "nickEth": "11970899470899470901",
+        "transactions": [
+            {
+                "hash": "0x0182a51404183f5b939837862c57e85f21593bd64fd9fa1b6eaf8963521ec116"
+            },
+            {
+                "hash": "0x7b619a79e9e039ad8abc2341b5a52da3712baae37d36fe05a9f338e7f457a612"
+            },
+            {
+                "hash": "0x9ad297c2cc37d1fcf7f618abeff74e48bfe1c00beab3d398fb4615ed7912e725"
+            },
+            {
+                "hash": "0xff9961050c00187e225971e4b0f36d42c59f288946bc0aa7b75e770c5a88b5d7"
+            },
+            {
+                "hash": "0x94d21fac7e8b363fa7abd88726f1deb38b8a286db35c0406e27aedd400d8d237"
+            }
+        ]
+    },
+    "0x0e514dd1047d427b619bafb08704e031eccce521": {
+        "address": "0x0e514dd1047d427b619bafb08704e031eccce521",
+        "isContract": true,
+        "nickEth": "1296296296296296297",
+        "transactions": [
+            {
+                "hash": "0xa20d67b4b20fd0459d3724084b9a77d6f8942efdcb1c3621f85de5f035dd4a42"
+            }
+        ]
+    },
+    "0x10ffeec57023afc81904bdc415372de9ee86fd5a": {
+        "address": "0x10ffeec57023afc81904bdc415372de9ee86fd5a",
+        "isContract": true,
+        "nickEth": "388888888888888889",
+        "transactions": [
+            {
+                "hash": "0xa5dc278c4fc5eee534f3c05d46fc75d069edab0c38a41941e1b5e8af3eb5ab14"
+            }
+        ]
+    },
+    "0x1387c4cbb161596482a1fed5efe12476bff873e6": {
+        "address": "0x1387c4cbb161596482a1fed5efe12476bff873e6",
+        "isContract": true,
+        "nickEth": "16474654377880184332",
+        "transactions": [
+            {
+                "hash": "0x00b1b5dd98b1974018a32bd9d69eaf5897cb608c80191f8d7f8d487e24fbdb7b"
+            },
+            {
+                "hash": "0x319513266f082d4b6c58e60368fd55957e42fb7745c1954eecc4eb14323d6812"
+            }
+        ]
+    },
+    "0x13b2135c71cb3797e5fc8c46770553086414fd68": {
+        "address": "0x13b2135c71cb3797e5fc8c46770553086414fd68",
+        "isContract": true,
+        "nickEth": "37919128916407407409",
+        "transactions": [
+            {
+                "hash": "0xdeae8f071a6fbe24bc0805a9518e0d0ecf5851e74c8f8ea3e395cd6fd5c5756c"
+            },
+            {
+                "hash": "0x72a1161a24943482124f10bb53fe3ff8b927d59b3ff36cb8d27475973f71790c"
+            },
+            {
+                "hash": "0x65baf64d3d131ee28659dc8b280ca48a392788fd77725b00655a6f367ccbd5df"
+            }
+        ]
+    },
+    "0x148fbd304aade01585a550415c992359be300b7a": {
+        "address": "0x148fbd304aade01585a550415c992359be300b7a",
+        "isContract": true,
+        "nickEth": "2307692307692307693",
+        "transactions": [
+            {
+                "hash": "0x2bec4eb244480ce2906cf8c53529884925b64cde685b5ea355969d3501363d9f"
+            }
+        ]
+    },
+    "0x170541783de4dc8d88f6c953c3dfb3f0041b13c3": {
+        "address": "0x170541783de4dc8d88f6c953c3dfb3f0041b13c3",
+        "isContract": true,
+        "nickEth": "1966666666666666668",
+        "transactions": [
+            {
+                "hash": "0x5fae3d82f4869351fdb0f7f530d99e5b96b3be44cbe7a5d7ff5e9103d3e4dc18"
+            },
+            {
+                "hash": "0x3c2ea48eb49f76d27d45574495e43251d158f048be0920c97edcf0ad1f7c7d42"
+            },
+            {
+                "hash": "0xd071b8775e835f70b1b4b8bc056d99a185492261ea0da058bb58295d9156d768"
+            }
+        ]
+    },
+    "0x180f5a2dec682fcd1c9aba081eb593c2d1e6fc29": {
+        "address": "0x180f5a2dec682fcd1c9aba081eb593c2d1e6fc29",
+        "isContract": true,
+        "nickEth": "90909090909090910",
+        "transactions": [
+            {
+                "hash": "0xd2cc85e7396512bc841872f5afc1000bc85657a190e99920a15f71fd789424ad"
+            }
+        ]
+    },
+    "0x18f5a34701d3c4c49c1f948d35f25f72a493781e": {
+        "address": "0x18f5a34701d3c4c49c1f948d35f25f72a493781e",
+        "isContract": true,
+        "nickEth": "4166666666666666667",
+        "transactions": [
+            {
+                "hash": "0x97d5e8978d4ec53dc41c8a441902d6fcbe6751b5ef068441180e8bdad95cb0a6"
+            }
+        ]
+    },
+    "0x19aa1adf30d179ef1ee9da96270435b17793bfd6": {
+        "address": "0x19aa1adf30d179ef1ee9da96270435b17793bfd6",
+        "isContract": true,
+        "nickEth": "388888888888888890",
+        "transactions": [
+            {
+                "hash": "0xc296ab052ddae240b2e09e19a99a60fbf91b2d53b100951156f9225a8127ce69"
+            }
+        ]
+    },
+    "0x1d00fbbe45fb74b9e020fc5086f6ef0ccfaed7a3": {
+        "address": "0x1d00fbbe45fb74b9e020fc5086f6ef0ccfaed7a3",
+        "isContract": true,
+        "nickEth": "2592592592592592",
+        "transactions": [
+            {
+                "hash": "0x3adbb7bcacb319e9312d50873d9f8ae297149834015eb9062fcec5f64d615d58"
+            }
+        ]
+    },
+    "0x1fc05ac28b8111b503025f3e54dbdb51bc66b043": {
+        "address": "0x1fc05ac28b8111b503025f3e54dbdb51bc66b043",
+        "isContract": true,
+        "nickEth": "22655172413793103449",
+        "transactions": [
+            {
+                "hash": "0xdf3f6b040affefae26fe70ee16d5fd7100f1f054c0f70b381ce362c59ba638a3"
+            }
+        ]
+    },
+    "0x20018893c7d8e38b14a10a00c70023c45d528fba": {
+        "address": "0x20018893c7d8e38b14a10a00c70023c45d528fba",
+        "isContract": true,
+        "nickEth": "15000000000000000000",
+        "transactions": [
+            {
+                "hash": "0x6cbba70411f111c9c3f13c34576b4a9f9802767ebdc541aa6062d847bee4907b"
+            },
+            {
+                "hash": "0x296692328c72beed6dee207553773cbc5466823fbfec86b51bae68e0dea716ea"
+            },
+            {
+                "hash": "0x0f76f8fb9ddc1b62e86310d0b6a1e747cc18f548326e399529d91739a2e9c08b"
+            }
+        ]
+    },
+    "0x21945cf4b61f2eb210d71333f988393457587e5c": {
+        "address": "0x21945cf4b61f2eb210d71333f988393457587e5c",
+        "isContract": true,
+        "nickEth": "3750000000000000000",
+        "transactions": [
+            {
+                "hash": "0x5a8e5fa5b962f7d7ee73fd58fb1d990ef9a2b39d4a6c975fc9e176f0bd882924"
+            },
+            {
+                "hash": "0x4bb37603263eb83c000df6d8a9ee9b41e45ddf637b2a208232614d08500dbe6b"
+            }
+        ]
+    },
+    "0x2762e586561c7ac0764459b926e627dc94f353ed": {
+        "address": "0x2762e586561c7ac0764459b926e627dc94f353ed",
+        "isContract": true,
+        "nickEth": "1166666666666666667",
+        "transactions": [
+            {
+                "hash": "0x8d36ba57fcb6302d5ecb3031470203c0d27fd5f5f7db057d6278db317de4d6d1"
+            }
+        ]
+    },
+    "0x28476fe827120ae6a8831ea9583b2309693050e5": {
+        "address": "0x28476fe827120ae6a8831ea9583b2309693050e5",
+        "isContract": true,
+        "nickEth": "19723076923076923077",
+        "transactions": [
+            {
+                "hash": "0x49330fa89c6d71528389472aec01b3c9142891533b4f1ff581461ceda96c7173"
+            },
+            {
+                "hash": "0xba6531686048f7fc29e611f0227eb0d0752be64af1689ee5b30fbb71a00bb276"
+            },
+            {
+                "hash": "0x40d3507d471b7b9cea605fa47b1a93f627eebfd976f0a98baea8c1f316c2cdd2"
+            }
+        ]
+    },
+    "0x28adfde72e266cf5a144a4221590e06010ffc84b": {
+        "address": "0x28adfde72e266cf5a144a4221590e06010ffc84b",
+        "isContract": true,
+        "nickEth": "2250000000000000000",
+        "transactions": [
+            {
+                "hash": "0x457243ccdcf571ab437d07654fa46a2252ed3fd38afb1ba43f2ef8217192a2d7"
+            }
+        ]
+    },
+    "0x2956f749e2705117e5972c05d309c5c2972840ee": {
+        "address": "0x2956f749e2705117e5972c05d309c5c2972840ee",
+        "isContract": true,
+        "nickEth": "1997104971511831163",
+        "transactions": [
+            {
+                "hash": "0x2e37e04a7cf7a6203e5b40891a52ea6bd44f3678f174aec35f54392cee6049e4"
+            }
+        ]
+    },
+    "0x2b3ab2fdb0b9111d25ebd6724bd1b56c04b80796": {
+        "address": "0x2b3ab2fdb0b9111d25ebd6724bd1b56c04b80796",
+        "isContract": true,
+        "nickEth": "969303709629629631",
+        "transactions": [
+            {
+                "hash": "0x179acd18390afa2aa1b49874b5d91d06d06da6fc69350e549a550b46e7a1c147"
+            },
+            {
+                "hash": "0xb4ad98016b9b4e99fe3bcd9c0d62319277f360abc61076d74de4275c12a966a0"
+            },
+            {
+                "hash": "0x60ae62c54276e8a70358b4db5f550f3a1cfec8b5a3a019564ff3b627b9da10c5"
+            }
+        ]
+    },
+    "0x2bbfbaf2e52da32835b69579c70446f7fc8dccc3": {
+        "address": "0x2bbfbaf2e52da32835b69579c70446f7fc8dccc3",
+        "isContract": true,
+        "nickEth": "83333593333333333334",
+        "transactions": [
+            {
+                "hash": "0x4e1eb40bb155e000e758e6aea8d24cfcfbcc16e9aa35e780f49e2218ec93e8b3"
+            }
+        ]
+    },
+    "0x2e341a93d6575b5a6eb601d2ce41272a96709740": {
+        "address": "0x2e341a93d6575b5a6eb601d2ce41272a96709740",
+        "isContract": true,
+        "nickEth": "22035740740740740741",
+        "transactions": [
+            {
+                "hash": "0x7d8a89baa3ec110345690a0ded1c30a8c99e9333b5a0e17296fa6fdb71704aa9"
+            }
+        ]
+    },
+    "0x2e3723f7201de9878e1b3333302ea3eca005e132": {
+        "address": "0x2e3723f7201de9878e1b3333302ea3eca005e132",
+        "isContract": true,
+        "nickEth": "1676361480000000000",
+        "transactions": [
+            {
+                "hash": "0x83063719255625dbbc393e5de593ed0da26a68b5e80509ac1d4259a674414764"
+            }
+        ]
+    },
+    "0x2ec527e29dc65d4676fc700d867ae98f42e8e618": {
+        "address": "0x2ec527e29dc65d4676fc700d867ae98f42e8e618",
+        "isContract": true,
+        "nickEth": "1297826086956521740",
+        "transactions": [
+            {
+                "hash": "0x9fd51cae0929a4b5f983c46948531a86e95a59402720cf40410a827e01d780e5"
+            }
+        ]
+    },
+    "0x372ecf6a0043a3a98407e09b4a5ebebdf833f464": {
+        "address": "0x372ecf6a0043a3a98407e09b4a5ebebdf833f464",
+        "isContract": true,
+        "nickEth": "1142857142857142858",
+        "transactions": [
+            {
+                "hash": "0x2543bc63056f9f8d71f2b2d5af7f60763346586e2935770300d151ae1ef06b85"
+            }
+        ]
+    },
+    "0x3981e2a559531595e85643ef606158652066c331": {
+        "address": "0x3981e2a559531595e85643ef606158652066c331",
+        "isContract": true,
+        "nickEth": "1000000000000000000",
+        "transactions": [
+            {
+                "hash": "0x6edd470f73997e68f752d58e41e31edb0ebb05121249db28106f332dc75b2923"
+            }
+        ]
+    },
+    "0x39f3e2f917785f2c87caf9a46021fbdfa38f60ee": {
+        "address": "0x39f3e2f917785f2c87caf9a46021fbdfa38f60ee",
+        "isContract": true,
+        "nickEth": "5000000000000000000",
+        "transactions": [
+            {
+                "hash": "0x512d6a43c5e6991b294bd6f98bc1a930e02bb5aa5696340f19301f6b8683c6be"
+            }
+        ]
+    },
+    "0x3b43f9f6ac65af404e89adc0b7321a85c92a51c0": {
+        "address": "0x3b43f9f6ac65af404e89adc0b7321a85c92a51c0",
+        "isContract": true,
+        "nickEth": "20937752627324171384",
+        "transactions": [
+            {
+                "hash": "0x21980e7254363683e83ae0f3b0be66cd07f44a4b09ad94b94a85504d184245a6"
+            }
+        ]
+    },
+    "0x3be342c14b6af4fc2dff240886a4def17a9140fb": {
+        "address": "0x3be342c14b6af4fc2dff240886a4def17a9140fb",
+        "isContract": true,
+        "nickEth": "633592264000000000",
+        "transactions": [
+            {
+                "hash": "0xfc684f1224dbcd2623f8f1cbaa138cb274392514e4e40a7b97e0dbc0cbb25269"
+            },
+            {
+                "hash": "0x7de737fc53b6bd1b78d978e744ffbd8059050611d3dd317221d77cb1ec2d3c9f"
+            }
+        ]
+    },
+    "0x3d39509d57273bdfeb261179727240637f27ca8f": {
+        "address": "0x3d39509d57273bdfeb261179727240637f27ca8f",
+        "isContract": true,
+        "nickEth": "1643478260869565218",
+        "transactions": [
+            {
+                "hash": "0x8a6187193a994937e3cc97739a330fbbf3e90f125dc5701edf305abae1b58494"
+            }
+        ]
+    },
+    "0x3f62241126dd623818697227fb08e850737e5061": {
+        "address": "0x3f62241126dd623818697227fb08e850737e5061",
+        "isContract": true,
+        "nickEth": "4366812227074235808",
+        "transactions": [
+            {
+                "hash": "0x79e4a73d1cb0b208605b8964068adcc1f8d9d9c8a66ed3c7c96eff684f628d83"
+            }
+        ]
+    },
+    "0x3f877f8b80a8824aa54323a1d363d2cab467c011": {
+        "address": "0x3f877f8b80a8824aa54323a1d363d2cab467c011",
+        "isContract": true,
+        "nickEth": "55000000000000000000",
+        "transactions": [
+            {
+                "hash": "0x5e7210aba1a999af55c65c0ebaabc4c48d1109a6f8e664080806352280cdd33b"
+            }
+        ]
+    },
+    "0x44540e13c91f6bb269a23b4088543b3e95c43d29": {
+        "address": "0x44540e13c91f6bb269a23b4088543b3e95c43d29",
+        "isContract": true,
+        "nickEth": "10000000000000000001",
+        "transactions": [
+            {
+                "hash": "0x69051f49dcf59bd060fca068b45b1f1654de16e086d6a140a534594ea556b9e2"
+            }
+        ]
+    },
+    "0x45e719c093d9c5a76739592110d353f1b89d51ae": {
+        "address": "0x45e719c093d9c5a76739592110d353f1b89d51ae",
+        "isContract": true,
+        "nickEth": "5000000000000000001",
+        "transactions": [
+            {
+                "hash": "0x460080094ed61566e6284fd69507d28f28562a04fb196a7ea059762d65b79444"
+            }
+        ]
+    },
+    "0x475ace67cd7cc00668238c0a9839f0de7f2b7fe0": {
+        "address": "0x475ace67cd7cc00668238c0a9839f0de7f2b7fe0",
+        "isContract": true,
+        "nickEth": "50166666666666666667",
+        "transactions": [
+            {
+                "hash": "0xa77280e38a1eb346c86b1e46dbf988dd08deb3168406e2f057ad7cedec2f491a"
+            },
+            {
+                "hash": "0x0f561ac856c4ce7a41079192af5d949b633930abeba2a357db8255a6309d8030"
+            }
+        ]
+    },
+    "0x4c458c0a95e1494b8ff423c90f1fe76ab7370ace": {
+        "address": "0x4c458c0a95e1494b8ff423c90f1fe76ab7370ace",
+        "isContract": true,
+        "nickEth": "3629629629629629630",
+        "transactions": [
+            {
+                "hash": "0x34cf5a28b1ef57250e1e74d64d6e7f96151e9d04ae89903c77c00d4b303067e3"
+            }
+        ]
+    },
+    "0x4f34e0b05a72869e594167bb6f7bc3b9745faeab": {
+        "address": "0x4f34e0b05a72869e594167bb6f7bc3b9745faeab",
+        "isContract": true,
+        "nickEth": "1010000000000000000",
+        "transactions": [
+            {
+                "hash": "0x8088b0592986684671cbfaadc326da0e56116fc21bf6fb9614f359f665f5fccc"
+            },
+            {
+                "hash": "0xfbe407293356d86d96735758638e2dce06e53b99ae8e43bb900f392fc566d358"
+            }
+        ]
+    },
+    "0x4f50198d60e9e0a92b417c029f59b3548334001b": {
+        "address": "0x4f50198d60e9e0a92b417c029f59b3548334001b",
+        "isContract": true,
+        "nickEth": "47619047619047620",
+        "transactions": [
+            {
+                "hash": "0x83e4422d821686332dd1b53e354034f7034aaf99814084f76dc3c0b6fdb35ea7"
+            }
+        ]
+    },
+    "0x53f279eb48145154aaded9adc203b8fd660767cc": {
+        "address": "0x53f279eb48145154aaded9adc203b8fd660767cc",
+        "isContract": true,
+        "nickEth": "310344827586206897",
+        "transactions": [
+            {
+                "hash": "0x36557739855f8fc9008ec4aba97262cf0a9f52b70dbffa2e429dfabf3a05cc17"
+            }
+        ]
+    },
+    "0x546907d29d84933694cae6b9be259ccf4bf04904": {
+        "address": "0x546907d29d84933694cae6b9be259ccf4bf04904",
+        "isContract": true,
+        "nickEth": "10166666666666666667",
+        "transactions": [
+            {
+                "hash": "0x1e829a531f350005f7cbb90770906b3b7f64254c490f38717fca90c47d4feb73"
+            }
+        ]
+    },
+    "0x5b295429e9a5ef5f7fa76ea28ba2b73af2d72f60": {
+        "address": "0x5b295429e9a5ef5f7fa76ea28ba2b73af2d72f60",
+        "isContract": true,
+        "nickEth": "5000000000000000000",
+        "transactions": [
+            {
+                "hash": "0xb7b49dc3a8cc9afc454c70ace06c0b1f43274c0b624c5fad6b7b8f5d6d7f3838"
+            }
+        ]
+    },
+    "0x61fdfde3a435d9c740144b8bca179e93c5198ed5": {
+        "address": "0x61fdfde3a435d9c740144b8bca179e93c5198ed5",
+        "isContract": true,
+        "nickEth": "2000000000000000000",
+        "transactions": [
+            {
+                "hash": "0x6aa2188695216c6cd1116c65e514fdc5f8e2ec284ee25762605b2103c2c28430"
+            }
+        ]
+    },
+    "0x63ec63d6cd7ab8032f304e6a2d353730c4b553a7": {
+        "address": "0x63ec63d6cd7ab8032f304e6a2d353730c4b553a7",
+        "isContract": true,
+        "nickEth": "33520816864295125167",
+        "transactions": [
+            {
+                "hash": "0xa71c15a80d2a472e3c0153a0458de2c955449b5adc21d5092033ba71e7d9f1cd"
+            },
+            {
+                "hash": "0xca8478937a6ea1d78637340f8b270ca007e37ae94ac8c96c93c4429285ce7ebe"
+            },
+            {
+                "hash": "0x50497f0c0610dd11d273114aadebc214be64a8939488c1f6a41742428dde5050"
+            },
+            {
+                "hash": "0x7f0fc334ba6426595d5d87cc06f78809bcf6ce4c16d038cd2efa87ce0dbcf00e"
+            },
+            {
+                "hash": "0x9d3899f93b0d9bbba10c63495ff498d5811fd1eee470a046e07629cd9c138201"
+            }
+        ]
+    },
+    "0x64c1ab8b92d15752a881749261d4f86a74e10c4d": {
+        "address": "0x64c1ab8b92d15752a881749261d4f86a74e10c4d",
+        "isContract": true,
+        "nickEth": "16061315884240000000",
+        "transactions": [
+            {
+                "hash": "0xd884007f1bd1f5e72f17d005156af92d2508358fe7eda23c230372bdc9aa5d62"
+            },
+            {
+                "hash": "0x417fa66ce16d2d554703d544b983f0fddb3d3a02189e9af4423e0d3d6c2e648c"
+            },
+            {
+                "hash": "0xef6e63e09c6581ce2e7105080f19a19220495dce035b67ebe1e7df5838c25061"
+            },
+            {
+                "hash": "0xcd5452a7aeddc213b8b24a8b53172cdbbbb6489512b522dc4705a30f964a0134"
+            }
+        ]
+    },
+    "0x6573751117e1e692c10d057318679e55fefd83a8": {
+        "address": "0x6573751117e1e692c10d057318679e55fefd83a8",
+        "isContract": true,
+        "nickEth": "2084656084656084656",
+        "transactions": [
+            {
+                "hash": "0xf2f75dd5ec8a87a70249d9c554a12a3dd15e4b1bcf4971f795d956cb73c1624e"
+            },
+            {
+                "hash": "0x57062e01b5231655e1c915577cad9cf0faae03daa8260b4423cb47bc7f95ac5e"
+            },
+            {
+                "hash": "0x07be07db274371cc3ed32c8a4a669db780bab10eea0e9557e67157d5e2cc0f0f"
+            },
+            {
+                "hash": "0xde8fcdbfdffe99bde75a7c5f4ac9c1bd71fb9068cb4df9ddb6b72eabbcac1c2b"
+            }
+        ]
+    },
+    "0x671d2740e89619b83c85cb74ddd6f40a753e2f23": {
+        "address": "0x671d2740e89619b83c85cb74ddd6f40a753e2f23",
+        "isContract": true,
+        "nickEth": "333333333333333334",
+        "transactions": [
+            {
+                "hash": "0x9d37842f8158bff5da47b1fa4a22859a1221869ee586ae707da7206c390a66ef"
+            }
+        ]
+    },
+    "0x67b5deb5f174e1fd899c59511a5e2896e3a4dac5": {
+        "address": "0x67b5deb5f174e1fd899c59511a5e2896e3a4dac5",
+        "isContract": true,
+        "nickEth": "1428571428571428574",
+        "transactions": [
+            {
+                "hash": "0x6650fd76c1bb0a1c6dce800f2f304a33388f4a1eb52f00f9479b158098857d9e"
+            },
+            {
+                "hash": "0xeac2ec859348168a1ed36fea040715db0b9a0ed4c71ce903d748ad42291f879b"
+            }
+        ]
+    },
+    "0x69a63fe0dfb6b48f9ef0f3211d730aa893eed777": {
+        "address": "0x69a63fe0dfb6b48f9ef0f3211d730aa893eed777",
+        "isContract": true,
+        "nickEth": "4950460516442687749",
+        "transactions": [
+            {
+                "hash": "0x81ff9830de3b5ae51742528e2b7cefd5f1c0f74b793ed0f745bc8d7abd97e4f5"
+            },
+            {
+                "hash": "0x5d11dbec921056c924f9544e98f6d9c2ddfa1bba0f3abe4669de7a476c805313"
+            },
+            {
+                "hash": "0x7ca9b6fc582165566c369e0f07f6e65061bb2bc6618bbd584ad62add176974f1"
+            },
+            {
+                "hash": "0xd86af998a6f25e098bf6db046816d595e58ace902621145ae2550377cc23197c"
+            }
+        ]
+    },
+    "0x6a0619fe1dc6da1d9ee7d89f6d1686da2437f41d": {
+        "address": "0x6a0619fe1dc6da1d9ee7d89f6d1686da2437f41d",
+        "isContract": true,
+        "nickEth": "32608695652173914",
+        "transactions": [
+            {
+                "hash": "0x715fb2058af71ce95127ca49fe9bcddc460f7770b17859bbc0609cf24cddde67"
+            }
+        ]
+    },
+    "0x6a56776c4a4403fd91f842c94e6ca0cc15141209": {
+        "address": "0x6a56776c4a4403fd91f842c94e6ca0cc15141209",
+        "isContract": true,
+        "nickEth": "10333333333333333336",
+        "transactions": [
+            {
+                "hash": "0x197450afc59167dba9dd6942a19f397a01abe307e9467fedac20ba93b368ae4f"
+            }
+        ]
+    },
+    "0x730b38f30cbd53c91582a00ce296af8e8d1f265c": {
+        "address": "0x730b38f30cbd53c91582a00ce296af8e8d1f265c",
+        "isContract": true,
+        "nickEth": "2188000000000000000",
+        "transactions": [
+            {
+                "hash": "0x471b7ae343efd101db4f8ea44ce1c85a8a998675d1e08cb9420a8e733030ac26"
+            }
+        ]
+    },
+    "0x75c97d530ad0acbaa7320db4936e1e0d06ad0cd7": {
+        "address": "0x75c97d530ad0acbaa7320db4936e1e0d06ad0cd7",
+        "isContract": true,
+        "nickEth": "1182930819493022872",
+        "transactions": [
+            {
+                "hash": "0x2112c1bb97e2af7541ccb6f99774d5f3accc09b684d871d61ef59cc2e5b5da80"
+            }
+        ]
+    },
+    "0x7840342f574180823d8ec58c2efcd15f9ab17443": {
+        "address": "0x7840342f574180823d8ec58c2efcd15f9ab17443",
+        "isContract": true,
+        "nickEth": "23076923076923076925",
+        "transactions": [
+            {
+                "hash": "0x684618fa7fef617f6f092432676687bcef24c0eda064e4b942ce9c1d5c3d8c65"
+            }
+        ]
+    },
+    "0x78c6ccabd55fb223cd287af0be2cfdd7bff247ff": {
+        "address": "0x78c6ccabd55fb223cd287af0be2cfdd7bff247ff",
+        "isContract": true,
+        "nickEth": "13333333333333333334",
+        "transactions": [
+            {
+                "hash": "0xc8a6b027428b00d7681a6c1de3b2895811bb2d88ae33cd49ec90d449ffc05a7b"
+            },
+            {
+                "hash": "0x01516e31338e7ede2535bc0ab76198819c1f36f8f8259e08c8a7b02d59634027"
+            }
+        ]
+    },
+    "0x7914c1d7c2b2d0f9e677a898bc17eeef5df3a2f1": {
+        "address": "0x7914c1d7c2b2d0f9e677a898bc17eeef5df3a2f1",
+        "isContract": true,
+        "nickEth": "1000000000000000000",
+        "transactions": [
+            {
+                "hash": "0xcb16a5d991f06eddaff18fd4928d3bfec39e937293af84331bd73477e41d001e"
+            },
+            {
+                "hash": "0x9c7925f6d0cbef3c551cfea108acb170c30d98adabe1a21e8a06f7fcc6914837"
+            }
+        ]
+    },
+    "0x7b19710e501b6abc3f12dc2c19f5a122caa3aa73": {
+        "address": "0x7b19710e501b6abc3f12dc2c19f5a122caa3aa73",
+        "isContract": true,
+        "nickEth": "37454545454545454547",
+        "transactions": [
+            {
+                "hash": "0xf00a7db995e95e728a0b8fd68bc2c50eb05cb98a66cbba55fe76096f52f3903e"
+            },
+            {
+                "hash": "0x34e24ab0c34fd480d44d4a0a28480a82c8cb4670f89bbf52381a47e577cf729a"
+            },
+            {
+                "hash": "0x162ac83eb663b91ca51b0116325bdd48dcf2c1f7e0deaecbb21f74cd44506c07"
+            }
+        ]
+    },
+    "0x7da7ec4d7342b0a088f3c0e9dea9a6bf92fb5088": {
+        "address": "0x7da7ec4d7342b0a088f3c0e9dea9a6bf92fb5088",
+        "isContract": true,
+        "nickEth": "24198177257525083613",
+        "transactions": [
+            {
+                "hash": "0x1aa7ebe86f358fcbf0f778a09dcede1f164c3395a9dbebc22346ff8affea0c15"
+            },
+            {
+                "hash": "0x5a3fd7c6bbf1c59f4a490b6db2071b12162b8db73472aa0991f5969bdfe7b253"
+            },
+            {
+                "hash": "0xa1bf21e115847970a88ff433c70ecec22924c34961605e5777fa989c870e6ed4"
+            }
+        ]
+    },
+    "0x80d90d80d85248e0cb97812fe7e276a7c98f4d0b": {
+        "address": "0x80d90d80d85248e0cb97812fe7e276a7c98f4d0b",
+        "isContract": true,
+        "nickEth": "1304347826086956522",
+        "transactions": [
+            {
+                "hash": "0x729fad9cd8351e29f7b1d901766273d486ced4ea91707c826ea5fde3f0911fea"
+            }
+        ]
+    },
+    "0x82d6bddda1d980fac5df377feafed492ca3f237f": {
+        "address": "0x82d6bddda1d980fac5df377feafed492ca3f237f",
+        "isContract": true,
+        "nickEth": "509090909090909091",
+        "transactions": [
+            {
+                "hash": "0x84105d4b3d4e937bfef57a595109e722f8b1123e37c9339b55d528eb41876216"
+            }
+        ]
+    },
+    "0x82e3e34416ca3d79240ac31aa996e50127061e41": {
+        "address": "0x82e3e34416ca3d79240ac31aa996e50127061e41",
+        "isContract": true,
+        "nickEth": "33313201834063843726",
+        "transactions": [
+            {
+                "hash": "0xadc2c932a2619e3127740105045c039d77dc8170169dca65574a78f57000dfe7"
+            },
+            {
+                "hash": "0x4b86ec558c9b14b01a9700a4098921c842a856763f89f6746ccbd32441df6bd1"
+            }
+        ]
+    },
+    "0x838359298630aa4b393d6a17a35984a65d784b46": {
+        "address": "0x838359298630aa4b393d6a17a35984a65d784b46",
+        "isContract": true,
+        "nickEth": "4426996533913043479",
+        "transactions": [
+            {
+                "hash": "0x0190f9aa1bc553ab60dee70e9c28c3d9f3a12ccca38d77baca874f6c00e2128a"
+            },
+            {
+                "hash": "0xed26b18b2b965bb52e70bd7931a04b97701a954266602c635d2ccb2e39a3ebfb"
+            }
+        ]
+    },
+    "0x864348539aa265c0391be669e0299ec93ed3737c": {
+        "address": "0x864348539aa265c0391be669e0299ec93ed3737c",
+        "isContract": true,
+        "nickEth": "7826086956521739132",
+        "transactions": [
+            {
+                "hash": "0x83355885948a0bddc0b050ef99d5892e39c6062bc671e78aa5500e9f321768b2"
+            }
+        ]
+    },
+    "0x864c05913596393f9bb45488b1d4082aa2143cb4": {
+        "address": "0x864c05913596393f9bb45488b1d4082aa2143cb4",
+        "isContract": true,
+        "nickEth": "10298850574712643679",
+        "transactions": [
+            {
+                "hash": "0xdea704c68b2758bb9eaa426b888630c61ae7f124581f7e01d44641bb24ee8480"
+            },
+            {
+                "hash": "0x8b984ac1d00ca98128b5e61da38940944276487a5927c70722a4fec0208eb72e"
+            },
+            {
+                "hash": "0x15b083a0bf00ec8b02d31082a1f3f9c3d6dedc201e8bf946fc71c252b9e4c0e4"
+            },
+            {
+                "hash": "0x2664d3a52f8a36d2f6186e5d40c70ba327714f1a80cb99f3696f8ea4134dd35b"
+            },
+            {
+                "hash": "0xe86b8147b6b0622119e88776f6008d2f443e042669f0931bf6f80cd8538990e7"
+            }
+        ]
+    },
+    "0x880f2801e1f5991196f95689315ff3450eac2975": {
+        "address": "0x880f2801e1f5991196f95689315ff3450eac2975",
+        "isContract": true,
+        "nickEth": "6185267615172413794",
+        "transactions": [
+            {
+                "hash": "0x0806ccf49e022e4d9a391c3d0b0b1a0002c58d6f7e6696393b4c64062c750852"
+            }
+        ]
+    },
+    "0x8c60453620eb94c4b3b8471a7e99df3eceb118ae": {
+        "address": "0x8c60453620eb94c4b3b8471a7e99df3eceb118ae",
+        "isContract": true,
+        "nickEth": "2764615384615384616",
+        "transactions": [
+            {
+                "hash": "0x2cee342a4261284e995f62bbd5a09d913bebb8bee4832e985651b1eec1ac1cce"
+            }
+        ]
+    },
+    "0x8ca3017ddd816b6d1ccb8dfe0b9e40713e8860f1": {
+        "address": "0x8ca3017ddd816b6d1ccb8dfe0b9e40713e8860f1",
+        "isContract": true,
+        "nickEth": "1055887688181818182",
+        "transactions": [
+            {
+                "hash": "0x6dd7572a9214096bdae08175b1fd7a6fa5e958f2027d3625618da0f3d7352437"
+            },
+            {
+                "hash": "0xf513256b2efe827e303419c9d76a0e6e2e06b39fd42a558e1df270196c1c1007"
+            }
+        ]
+    },
+    "0x8d262f884ebd9102a08e6c6b05e1986170cbe58d": {
+        "address": "0x8d262f884ebd9102a08e6c6b05e1986170cbe58d",
+        "isContract": true,
+        "nickEth": "2500000000000000000",
+        "transactions": [
+            {
+                "hash": "0xcbf3a429b1959e09d6b2fea0171828b82040fd6c1f022eb6d7f8423068efb137"
+            }
+        ]
+    },
+    "0x8d3fb842624c3ca5273966c00876be8a19e8afb8": {
+        "address": "0x8d3fb842624c3ca5273966c00876be8a19e8afb8",
+        "isContract": true,
+        "nickEth": "389694041867954913",
+        "transactions": [
+            {
+                "hash": "0xedaa9a9bd7220bcddd6249a25fe879c93a1b351794a405dd842102496d65f4df"
+            },
+            {
+                "hash": "0xc100c0b488afeb06727f7980f61114769b0e56f4eda07fa81e029e5b68403288"
+            }
+        ]
+    },
+    "0x8fb17fb951dc8b76ca78005480bfb0d508996053": {
+        "address": "0x8fb17fb951dc8b76ca78005480bfb0d508996053",
+        "isContract": true,
+        "nickEth": "1818181818181818182",
+        "transactions": [
+            {
+                "hash": "0x3e52b3528d5ef24be43af7c8253c255b52238579763109ede0185a6e39d3b5bf"
+            }
+        ]
+    },
+    "0x930f15641a7b6d8df69fa92fcff57edae1063082": {
+        "address": "0x930f15641a7b6d8df69fa92fcff57edae1063082",
+        "isContract": true,
+        "nickEth": "7500000000000000000",
+        "transactions": [
+            {
+                "hash": "0xb53834fc8a6c3df178a84dd4026afeef3139ca4f0092c81546aaa2537fb09615"
+            }
+        ]
+    },
+    "0x9611b899f89c4c9146c1dcda2d4a1c870659469e": {
+        "address": "0x9611b899f89c4c9146c1dcda2d4a1c870659469e",
+        "isContract": true,
+        "nickEth": "63333333333333333334",
+        "transactions": [
+            {
+                "hash": "0xbce1723b987fbe4bdf85cae38780ee912a5a0205c32cecb0b119c5509f2046f8"
+            }
+        ]
+    },
+    "0x9662958c46e481c020ddaf6ba06249bc1263b59f": {
+        "address": "0x9662958c46e481c020ddaf6ba06249bc1263b59f",
+        "isContract": true,
+        "nickEth": "1359298672342150605",
+        "transactions": [
+            {
+                "hash": "0x9b2e67f106a22941df121038490223be8b9f60cebd7906dc08088fd14bb20ae2"
+            },
+            {
+                "hash": "0x9ebae0403991f9a5c704e2506bf6662cae7bf90b59c3e66f4cebe47a2a82f7e5"
+            },
+            {
+                "hash": "0x2acb1ef6ded5295281060c332a058f70844feefdef03b405c41ae4fb4fee134a"
+            },
+            {
+                "hash": "0xa4fd0403ec75fc7e45472d249dbc14400d192e5b17b0b3d09763d8186dbbfbb0"
+            },
+            {
+                "hash": "0xc0d72afb1b8ab44de6278e0d7ece67a6675bd3f154360cb3650bb0641e60735c"
+            }
+        ]
+    },
+    "0x99dc9ef48baa872fbaea9a43066c514e0f6bd04c": {
+        "address": "0x99dc9ef48baa872fbaea9a43066c514e0f6bd04c",
+        "isContract": true,
+        "nickEth": "12500000000000000000",
+        "transactions": [
+            {
+                "hash": "0x3b3fb182a603637b9218d55a4dc08052789a8ba176aabb2a2f56bc9f5e56c399"
+            }
+        ]
+    },
+    "0x9b1c99865b18bdacc1927632742bca858d2f8919": {
+        "address": "0x9b1c99865b18bdacc1927632742bca858d2f8919",
+        "isContract": true,
+        "nickEth": "310344827586206897",
+        "transactions": [
+            {
+                "hash": "0x030155489584990f1e3253c1eefdccefeff11499b503b64d3cd1cdc67ca22aa4"
+            }
+        ]
+    },
+    "0xa3b4f261f4b3ce4fa23d4dc1e2e67533535e7efe": {
+        "address": "0xa3b4f261f4b3ce4fa23d4dc1e2e67533535e7efe",
+        "isContract": true,
+        "nickEth": "5750000000000000000",
+        "transactions": [
+            {
+                "hash": "0x5bc0c131c44c9fd8a714a0441c62dc141434e63535903745c3f689504a2ea412"
+            },
+            {
+                "hash": "0x5cdc3baa759f0dec79c1ddb0de08a8dffa27aa2699b0081d734eeecf27378a71"
+            },
+            {
+                "hash": "0x154113fdf145b2965150630249bcf83c548674734cfd8db51378bed4fef6394f"
+            }
+        ]
+    },
+    "0xa4f6dfc4db79ac7beebc369ccffead50d1ed8941": {
+        "address": "0xa4f6dfc4db79ac7beebc369ccffead50d1ed8941",
+        "isContract": true,
+        "nickEth": "5797435897435897437",
+        "transactions": [
+            {
+                "hash": "0x16fb6b4ecdc99fe1127ce4865c5adae8d9e36182f7001733011341e31a8e8339"
+            },
+            {
+                "hash": "0x6d516cccb1da25c6570f683278f6bc7680a3d05e14bbd640c6da9e1e6f2ee7c5"
+            },
+            {
+                "hash": "0x4a7cbc228018c51370b5de7eea74b59b93058550c476fd4fbb54517345d2c168"
+            }
+        ]
+    },
+    "0xa612d1ef77a0d9097e5e9d1c8f341f2acd4f2b1f": {
+        "address": "0xa612d1ef77a0d9097e5e9d1c8f341f2acd4f2b1f",
+        "isContract": true,
+        "nickEth": "4000000000000000000",
+        "transactions": [
+            {
+                "hash": "0xd47d4f4cd7aba6d796d5b19f170f72bcb6d1f6eb3faee7112eb0060ef6e8058e"
+            }
+        ]
+    },
+    "0xa61802f7e336d39d805ed0d4a3b7b8b62b30d3a2": {
+        "address": "0xa61802f7e336d39d805ed0d4a3b7b8b62b30d3a2",
+        "isContract": true,
+        "nickEth": "242836110034870205",
+        "transactions": [
+            {
+                "hash": "0x2457fcfbca6d70185adc4366e9d9ad8368845f215c829027f671dbd434def491"
+            }
+        ]
+    },
+    "0xa8efc69437fbe6f13f35d5e512b64816f7058633": {
+        "address": "0xa8efc69437fbe6f13f35d5e512b64816f7058633",
+        "isContract": true,
+        "nickEth": "828571428571428573",
+        "transactions": [
+            {
+                "hash": "0xb11343023e5e7d68dc7a35a26cfb40eca5f48b36876b633b384e16063dc31a42"
+            }
+        ]
+    },
+    "0xad8acb5f0d6ebf92613bcc721958e4cce07fca5d": {
+        "address": "0xad8acb5f0d6ebf92613bcc721958e4cce07fca5d",
+        "isContract": true,
+        "nickEth": "2000000000000000000",
+        "transactions": [
+            {
+                "hash": "0xe44281179c123ab47f0492ec8da0306e59718699325ec48abcd562c4bda79f09"
+            },
+            {
+                "hash": "0xcfaf9a4ec668463042bf6811be4545d6054f017e082159507e4914cc3da3f6b4"
+            },
+            {
+                "hash": "0x640d27b2651ac8846549d8ba3db1dd93b146a125a45c8698a0cdb3e8aa97c901"
+            },
+            {
+                "hash": "0xb7a11940cad96fe59070ba656e5fa09714a8868d42a264194007b6fe6d053c07"
+            }
+        ]
+    },
+    "0xaf259c70032061281a1ac29bd8b097753e642a1a": {
+        "address": "0xaf259c70032061281a1ac29bd8b097753e642a1a",
+        "isContract": true,
+        "nickEth": "33333333333333333",
+        "transactions": [
+            {
+                "hash": "0xb32492a985151849fdec1edcf9c783afca66c6750a0e17e0968f3dbcf87f11db"
+            }
+        ]
+    },
+    "0xb5f163b3d59ae35a543f89ba18ab2aded1b26c6d": {
+        "address": "0xb5f163b3d59ae35a543f89ba18ab2aded1b26c6d",
+        "isContract": true,
+        "nickEth": "4021193906086956522",
+        "transactions": [
+            {
+                "hash": "0x48d2b7386489cbda81d4593a6527a93221700fdd8cdffe6d14eae11797b69517"
+            }
+        ]
+    },
+    "0xbe424828844ef9d8d81067a6a81b75dffdfe3900": {
+        "address": "0xbe424828844ef9d8d81067a6a81b75dffdfe3900",
+        "isContract": true,
+        "nickEth": "1197748233321355851",
+        "transactions": [
+            {
+                "hash": "0x0819b42c8e163361e372c4b4f7c387073e4c30a7fd5a30560ed6fe3aa7317aff"
+            }
+        ]
+    },
+    "0xbf4b2b0e0d5e49f9e49a3e1d2ae58c2cd769795e": {
+        "address": "0xbf4b2b0e0d5e49f9e49a3e1d2ae58c2cd769795e",
+        "isContract": true,
+        "nickEth": "333333333333333334",
+        "transactions": [
+            {
+                "hash": "0x73271df2e0830298c34900760ff71beb231ea70ed3bf30a36fd50772f2de4da2"
+            }
+        ]
+    },
+    "0xc357da27d1b0a92d32b9894439a41da86c87ebeb": {
+        "address": "0xc357da27d1b0a92d32b9894439a41da86c87ebeb",
+        "isContract": true,
+        "nickEth": "494296864718787319",
+        "transactions": [
+            {
+                "hash": "0x41ea2c00df4dec26127b186d0cfe6947a277c6605394326e9a112fddf517afa6"
+            },
+            {
+                "hash": "0xf8e0362db1689a827a38376d9220d501de4ae42ee3cedc9f864cfaf57f2261c2"
+            },
+            {
+                "hash": "0x0c6a47fb71491610a5fc0dc9f5a112a3e2a90c1bd3c9b548be5d768215f5e7ca"
+            },
+            {
+                "hash": "0x58a4bc3f4d1747730d12ad12bcff52d65cef6c13db7b9fdc2f3783f884832e27"
+            },
+            {
+                "hash": "0x506f09e8918fc58e1713ac907c59c2c2ec40bf4145b86189df7795a54eb2b2fd"
+            },
+            {
+                "hash": "0x4ac873b85a5d572d99167c725072a39750a03a9e4e7c39381bb95a98d488127d"
+            }
+        ]
+    },
+    "0xc45a2d967a6809003ec1d55814c94377a91f4e9c": {
+        "address": "0xc45a2d967a6809003ec1d55814c94377a91f4e9c",
+        "isContract": true,
+        "nickEth": "1569358178053830230",
+        "transactions": [
+            {
+                "hash": "0xb21de72f7fededf891a7959cd6e200f2a5cbe4ab9da4eeace76ab68dfd303c6a"
+            },
+            {
+                "hash": "0xd9623a5cbb4136a70fc66275b711ba442f8c5d6185209ea82cbc81b912759548"
+            },
+            {
+                "hash": "0xfa2149c61461b6ce71c928f2a8a333eee14eff2fc0382f0ac2b2edeb8cf00fc7"
+            },
+            {
+                "hash": "0x95f5547d1ef0b50373e2048ce9209e8365506e0f83fc12e1af873075ede0d9be"
+            }
+        ]
+    },
+    "0xc4c795ca5005a4a109386b943cde45fe1e588d40": {
+        "address": "0xc4c795ca5005a4a109386b943cde45fe1e588d40",
+        "isContract": true,
+        "nickEth": "150000000000000000",
+        "transactions": [
+            {
+                "hash": "0xbb4c9d5db71fe2bea450911050022a69d3961d7c790f77115ef8abd2218a41e6"
+            }
+        ]
+    },
+    "0xc7eb0b5db4604b7486c3416109a0fc5e602f5a0a": {
+        "address": "0xc7eb0b5db4604b7486c3416109a0fc5e602f5a0a",
+        "isContract": true,
+        "nickEth": "16000000000000000000",
+        "transactions": [
+            {
+                "hash": "0xb9d57490ee7b4138927b65aaffa54ca5dd6f68d7ac4a7d018a3276f495814989"
+            }
+        ]
+    },
+    "0xc8f69db8fdaa87ff8df88bc899e7d04c7f21059e": {
+        "address": "0xc8f69db8fdaa87ff8df88bc899e7d04c7f21059e",
+        "isContract": true,
+        "nickEth": "6666666666666666668",
+        "transactions": [
+            {
+                "hash": "0xaca47f7aa7fa6188914ca7f948630398e54727ea0ea8d4484f927d6ecf7edd21"
+            },
+            {
+                "hash": "0x6686ed56ee557cfdaa1d99136b7ec1bedf9fe0f2971e88e0e708a8bd84a2e9b5"
+            }
+        ]
+    },
+    "0xc9aa7fb5ca668f9b5205dd78b7488018a1e09807": {
+        "address": "0xc9aa7fb5ca668f9b5205dd78b7488018a1e09807",
+        "isContract": true,
+        "nickEth": "16338080959520239882",
+        "transactions": [
+            {
+                "hash": "0xe8e6cd15ff5132120df1376f1578cb81194c8ae95e45e7ec21804438c9ed5e1e"
+            },
+            {
+                "hash": "0x110f70a96eed8e0fadb0dfb1313e7e4b3a7fb65049378deb20de964eb1d40922"
+            },
+            {
+                "hash": "0x50d27efc8b295d3d3e5721be6bd87c948b09bfcb77a3787448bd3db319606aff"
+            }
+        ]
+    },
+    "0xc9e44aad6b6df80dd497e41870f375318187fd75": {
+        "address": "0xc9e44aad6b6df80dd497e41870f375318187fd75",
+        "isContract": true,
+        "nickEth": "15130434782608695656",
+        "transactions": [
+            {
+                "hash": "0x2874eaabdfb83d55133476460690cbee0a4afa5248fd2dadbdd060ad7df199b0"
+            },
+            {
+                "hash": "0x690b2d381863b5267e3c272cf5b46f26adbb6973ef4316f081281f06ebfd01a6"
+            },
+            {
+                "hash": "0x1cd74c043f93a156136421881a4f0306341ca7e8412be7c8daab76270059eafc"
+            },
+            {
+                "hash": "0xcaff8654e15963d6cfa19c475082e112cdc962c77ed110f216da91e20d89b5c3"
+            }
+        ]
+    },
+    "0xcad45a64075d770337c646ff8191c7a988798ab0": {
+        "address": "0xcad45a64075d770337c646ff8191c7a988798ab0",
+        "isContract": true,
+        "nickEth": "7710046077358146329",
+        "transactions": [
+            {
+                "hash": "0x2437c0e855975c035054783c2acf53e8694bbbb7f19ceafccb78555e1977fd78"
+            },
+            {
+                "hash": "0x9e8c57d85352f280f8fea90f16d82eda4259bbd8d83ff5672b48fafc9dfe14bb"
+            },
+            {
+                "hash": "0xf9f54c44c6f049735c48acf69a3ebd54222e63fb2b88ff1ffb44b48cc7f497c2"
+            },
+            {
+                "hash": "0x46b5a9a46f14b5b8771242635ec6bfd4a395a7a527716400794c5243091eb60f"
+            },
+            {
+                "hash": "0xfb7cd8216156e1661d516cac8355e250e7074a683b9cb7160b22cbe15e4e4c3a"
+            },
+            {
+                "hash": "0x7dd02648db038cadd603027f8dcdef8e0a06abd7b1f8a355ecfe865b5bcb96b2"
+            },
+            {
+                "hash": "0x50d4c7cab34b9f75b5136dcc1a7e755b4c411408c4c7882416c12b1f10361ce6"
+            },
+            {
+                "hash": "0xe4f5b7d6f43675eeb1394602c93b6991227b93a70e5bd3c41ca07743d98f740c"
+            },
+            {
+                "hash": "0x7728955d69b13375a66be9acaf60a928ea5aef1dbade5898340458971c73bc50"
+            },
+            {
+                "hash": "0x39dd14e6f4d3331ae58e62e2433e8d8d0836829116e636472eff81cd80ac09a5"
+            },
+            {
+                "hash": "0xc9c9d3bad0acd181f015425b12ff3e9b2f889c92354e148e9ef3d0c0f3f82a74"
+            },
+            {
+                "hash": "0x31cc444fcbbab7919250b15c301920594fb24133cfdfb5f9b27e917a51e9fd55"
+            }
+        ]
+    },
+    "0xcbdea9c91d892665287b347bb06fe517b93b3ad4": {
+        "address": "0xcbdea9c91d892665287b347bb06fe517b93b3ad4",
+        "isContract": true,
+        "nickEth": "21438582130434782609",
+        "transactions": [
+            {
+                "hash": "0x36b993eb169f0d42c0abedc018eb1dda667093f9de0bf689b4b78a6dcc6b55e4"
+            }
+        ]
+    },
+    "0xcdc572bcaa2bbb13fc49b74239091feb83929bd5": {
+        "address": "0xcdc572bcaa2bbb13fc49b74239091feb83929bd5",
+        "isContract": true,
+        "nickEth": "10000000000000000000",
+        "transactions": [
+            {
+                "hash": "0x834f94a24494ad600b8c607c0f3c09ee7db5de38f9eb4dd2fac556adbde4b0b0"
+            }
+        ]
+    },
+    "0xcea671dee30577571e7c0e10ed9bcef1eba8b3b5": {
+        "address": "0xcea671dee30577571e7c0e10ed9bcef1eba8b3b5",
+        "isContract": true,
+        "nickEth": "466666666666666667",
+        "transactions": [
+            {
+                "hash": "0x94f36aaa5d04d1a24176aef8557557b53c8994369e590d6e805f4b0d5eb4381a"
+            },
+            {
+                "hash": "0xc70d560f8c3fe8d4793b1e3c3dad41fffa25e5504ab04a4573bfd484052b0447"
+            }
+        ]
+    },
+    "0xd0f8df36d67d675c6fd16e73d86a49c037a487b6": {
+        "address": "0xd0f8df36d67d675c6fd16e73d86a49c037a487b6",
+        "isContract": true,
+        "nickEth": "14000000000000000000",
+        "transactions": [
+            {
+                "hash": "0x0693f29f9335957f23de45d4c20a7735e93a1fcbccd3b098bfb0b2ef7bdbb52f"
+            },
+            {
+                "hash": "0xba49490ecbf47b4de8d087c0a7eb76244573c38263179366892fbce6c313ea5a"
+            }
+        ]
+    },
+    "0xd1354da7261b05a4703c9052a270234c1d70ce40": {
+        "address": "0xd1354da7261b05a4703c9052a270234c1d70ce40",
+        "isContract": true,
+        "nickEth": "33333333333333334",
+        "transactions": [
+            {
+                "hash": "0x28add894e3d7b7b8692ee2a5a083dc38ae9377c77ccfe212f928af9db0bf0f43"
+            }
+        ]
+    },
+    "0xd572e626189458dbd9455871b06d97d80e9e86ae": {
+        "address": "0xd572e626189458dbd9455871b06d97d80e9e86ae",
+        "isContract": true,
+        "nickEth": "2156666666666666667",
+        "transactions": [
+            {
+                "hash": "0x94ec6b7eaf20fde70b93f2739d73d97d2a8ac2e626c947ddc7e842e073a7e2a7"
+            },
+            {
+                "hash": "0x4f98bc8e249122f400b12c68f56ab3351d39021ecbde6a81fac56696034e5196"
+            }
+        ]
+    },
+    "0xd6ada55eb9e4cbd82aa7a692b81fcd8bfe3b1b95": {
+        "address": "0xd6ada55eb9e4cbd82aa7a692b81fcd8bfe3b1b95",
+        "isContract": true,
+        "nickEth": "302939958592132507",
+        "transactions": [
+            {
+                "hash": "0x29e074aa88182f263933da91c67e3d610c322eda093bb65e0db9c2ec8d2b6dad"
+            },
+            {
+                "hash": "0x1bdb3fdf96957b02b2178f179d09d77a59a29cadb7710352a7429635a1deadfd"
+            },
+            {
+                "hash": "0xfa6ff5c989e8c161c71b0834c34b920dac291e309d8bb145a61ae7a9e1bc1fdb"
+            },
+            {
+                "hash": "0xd3aa4f5d6bd4d84b5260d56ea63a22b870f1f8237ea6c6f6fb7fddd1eaa3c23d"
+            }
+        ]
+    },
+    "0xd6b6dacce6c75534fd43f42d744a2172832736f3": {
+        "address": "0xd6b6dacce6c75534fd43f42d744a2172832736f3",
+        "isContract": true,
+        "nickEth": "5000000000000000000",
+        "transactions": [
+            {
+                "hash": "0x65516737ac793f7dc2ed43213958543e3e727f27c2856eb5c0d660bc61d18592"
+            }
+        ]
+    },
+    "0xd82fca8bc718923c1eb074b28719a633599876de": {
+        "address": "0xd82fca8bc718923c1eb074b28719a633599876de",
+        "isContract": true,
+        "nickEth": "1428571428571428572",
+        "transactions": [
+            {
+                "hash": "0xc7c39c41279636c13deafbf0acc1851608cb3324b87a3fc1e7e9b1276be19aba"
+            }
+        ]
+    },
+    "0xdaec7588974691fad1394496af1bd37158196873": {
+        "address": "0xdaec7588974691fad1394496af1bd37158196873",
+        "isContract": true,
+        "nickEth": "8945203656666666667",
+        "transactions": [
+            {
+                "hash": "0xb6a75419e0f8fd91e4350e06d45f8f72ba2fe7471593a7b27d84980612d24a3a"
+            }
+        ]
+    },
+    "0xdbeb3502b2db5c45943e6695485f98fa390c35b9": {
+        "address": "0xdbeb3502b2db5c45943e6695485f98fa390c35b9",
+        "isContract": true,
+        "nickEth": "1766666666666666668",
+        "transactions": [
+            {
+                "hash": "0x24d8c1c5244abeb4b6b9a57f6c153dbefa4707d5d381614de25819c9dc81034d"
+            },
+            {
+                "hash": "0x0bfdbf8240a4ec2cefe85cbbfb2ba89086d51aed56db3ef365bd826d4511ca88"
+            }
+        ]
+    },
+    "0xdcbab2b1c28b6f57c367f4eff0f5c7893400cc4d": {
+        "address": "0xdcbab2b1c28b6f57c367f4eff0f5c7893400cc4d",
+        "isContract": true,
+        "nickEth": "1000000000000000000",
+        "transactions": [
+            {
+                "hash": "0x93feb5fd5b7b273424231866e6badff758f6374edf474c2f557e048401a36f8a"
+            }
+        ]
+    },
+    "0xdec15fa8777d922d4b42919389d6ba8f926ad81f": {
+        "address": "0xdec15fa8777d922d4b42919389d6ba8f926ad81f",
+        "isContract": true,
+        "nickEth": "4487577639751552796",
+        "transactions": [
+            {
+                "hash": "0xa6def42e1fb0961cba18dc50b1b5e84e31c68ea780474e16b93bbd8ccb5d87e3"
+            },
+            {
+                "hash": "0x111f8c9091d782f3cc30a67c2e5e7c6a3eaf84c83e4ef64803feb2f158c7b1d1"
+            }
+        ]
+    },
+    "0xe09bc42f9cd425dee55e71f581cedbe806df04b9": {
+        "address": "0xe09bc42f9cd425dee55e71f581cedbe806df04b9",
+        "isContract": true,
+        "nickEth": "300000000000000000",
+        "transactions": [
+            {
+                "hash": "0xe85f45ef03979c92c2dc935c2fd52e186679f77ffb01841b4486fddd73e4d4d2"
+            }
+        ]
+    },
+    "0xe1494b9d1615b5a4bd07d4e2d603385a74d5f94a": {
+        "address": "0xe1494b9d1615b5a4bd07d4e2d603385a74d5f94a",
+        "isContract": true,
+        "nickEth": "666666666666666667",
+        "transactions": [
+            {
+                "hash": "0xb7316cb97ad273f70459fe894d88dc0ac646c0fcbf7621b4f32c300ca0a8751b"
+            }
+        ]
+    },
+    "0xe552a180e3313ade46faee12675f0c600364f386": {
+        "address": "0xe552a180e3313ade46faee12675f0c600364f386",
+        "isContract": true,
+        "nickEth": "91862068965517241383",
+        "transactions": [
+            {
+                "hash": "0x1344d0bb91d9339de7c80816fb8dbf285526e2dc430d423bb18dcea2c2463e6c"
+            },
+            {
+                "hash": "0x256d12b4148aa0030604d3050079b28eed284a196eebc7c61291a3c652fd06b5"
+            },
+            {
+                "hash": "0x1f1519968ef9224083800c736ecec8b45a72ad060d69acc36f4e19fa41b94245"
+            },
+            {
+                "hash": "0x1dbc85b5658ba5caaad6e205135dc06d10d9d138d5bea2e02fcfe600e030eca4"
+            }
+        ]
+    },
+    "0xe5cdf860c225d2a9ea0ec8b658908a73c1c257b4": {
+        "address": "0xe5cdf860c225d2a9ea0ec8b658908a73c1c257b4",
+        "isContract": true,
+        "nickEth": "31153846153846153847",
+        "transactions": [
+            {
+                "hash": "0x2e434c2d25bd599adc9d384653da6e160404f2cc0635fb428ac6828a0231d440"
+            }
+        ]
+    },
+    "0xe640244f00ab2349171eca6a9367f0b5a64416cc": {
+        "address": "0xe640244f00ab2349171eca6a9367f0b5a64416cc",
+        "isContract": true,
+        "nickEth": "1666666666666666667",
+        "transactions": [
+            {
+                "hash": "0x7e5baf14062d6e957729fc37373ee8b075df317fe5471d1f25177a1598232edd"
+            }
+        ]
+    },
+    "0xe76563eb8413ede9b4a1a3c1f3280a95c4b60a33": {
+        "address": "0xe76563eb8413ede9b4a1a3c1f3280a95c4b60a33",
+        "isContract": true,
+        "nickEth": "676666666666666667",
+        "transactions": [
+            {
+                "hash": "0xfb6ea47f4992ee2aa2529ea201c21c329d95a4d25a8c8fd98e18cd46e305cbc5"
+            }
+        ]
+    },
+    "0xe9f7104fc843570be7a9fe624e8fdc08f21a0755": {
+        "address": "0xe9f7104fc843570be7a9fe624e8fdc08f21a0755",
+        "isContract": true,
+        "nickEth": "27000000000000000000",
+        "transactions": [
+            {
+                "hash": "0x3c178c7234531ab62253dba31486bfb2272cb5330bb03a73a7aedacd1de6c1a5"
+            }
+        ]
+    },
+    "0xea03b45c837aeec6f35fa855a2e327f6babc6f88": {
+        "address": "0xea03b45c837aeec6f35fa855a2e327f6babc6f88",
+        "isContract": true,
+        "nickEth": "23275874712643678162",
+        "transactions": [
+            {
+                "hash": "0x151dce5a92a4b5706ca1ecc398eb4872e77ec55505f6864cc0b1b99d8c84bc59"
+            },
+            {
+                "hash": "0x8b7a4048c4765b32d767d063f6a001152bf1a6d8ded9a83c050ca0d5044b4cc6"
+            }
+        ]
+    },
+    "0xeb2ec06c245319ff49c22fba11449fa0230a0e4c": {
+        "address": "0xeb2ec06c245319ff49c22fba11449fa0230a0e4c",
+        "isContract": true,
+        "nickEth": "1500000000000000000",
+        "transactions": [
+            {
+                "hash": "0xf3868d454334c42df3540b7f3ebf160782ddd7f695869da86bb1ddbd0d0b30c1"
+            }
+        ]
+    },
+    "0xec0b3ec47c12588acf9d52429a9d9404b401ebb8": {
+        "address": "0xec0b3ec47c12588acf9d52429a9d9404b401ebb8",
+        "isContract": true,
+        "nickEth": "500000000000000000",
+        "transactions": [
+            {
+                "hash": "0x2d8fa036b19b48adc656a4f52e75ba03b6203d16dc377ed1e5c96781b725ff13"
+            }
+        ]
+    },
+    "0xed4bd0c42844d0fdd6d3a1757b00a07826014242": {
+        "address": "0xed4bd0c42844d0fdd6d3a1757b00a07826014242",
+        "isContract": true,
+        "nickEth": "1048548333333333334",
+        "transactions": [
+            {
+                "hash": "0x311cec6473c3b05dd0fb2cebd90b16521011edafa461bc84a6bd0af94541712e"
+            },
+            {
+                "hash": "0x382e3c6b61110488b74db1ad4bfc4a31a1df8e35220f806b7065174e0b19c82d"
+            },
+            {
+                "hash": "0x23ebda494f69f1bcdcb3cdc7b34c6863433bcba2c2e2231c29daf67132079499"
+            }
+        ]
+    },
+    "0xf0e54e94f2aca3c72c7f3f413551d90c8fb5c645": {
+        "address": "0xf0e54e94f2aca3c72c7f3f413551d90c8fb5c645",
+        "isContract": true,
+        "nickEth": "3650000000000000000",
+        "transactions": [
+            {
+                "hash": "0xb45766662bb361131b3d6496fbec1d3f4366534c2c1af03bcfdb782fe3d424d0"
+            },
+            {
+                "hash": "0x27e408bdcb192f0e53a5efe972f25161bf65439ca6d15bf521cf80a0a6c554b8"
+            },
+            {
+                "hash": "0x2fa6080cdef8ebf03d953d12ca486ad46419fa87138961e7323b1d157fef89a5"
+            }
+        ]
+    },
+    "0xf32c6e8981be83396c4191b67bb4f4e851850f5e": {
+        "address": "0xf32c6e8981be83396c4191b67bb4f4e851850f5e",
+        "isContract": true,
+        "nickEth": "1056807016666666667",
+        "transactions": [
+            {
+                "hash": "0xabec42f888eba1f13dacffa1eb006e7389ab1e7ca90dab56e290f93d1a10a76d"
+            },
+            {
+                "hash": "0x67568d32480c0dd57ebdebd10f1449f81d2d0186bbdc1a0439c724909a99f0bc"
+            }
+        ]
+    },
+    "0xf6ea594d9431f7e67fe1fa037c631259176bcbc1": {
+        "address": "0xf6ea594d9431f7e67fe1fa037c631259176bcbc1",
+        "isContract": true,
+        "nickEth": "4068181818181818182",
+        "transactions": [
+            {
+                "hash": "0xedd05f1a2866bf1019700a9b6de5e05afdac88868fb71a58f5d693da312198d2"
+            },
+            {
+                "hash": "0x0f7c5663ba6b1b56177bca401c2ed465d56ce0e83229c4a5b40af71c06f17f53"
+            }
+        ]
+    },
+    "0xf6eb3bbb38dc1a2e2e70f010993a20e5f07978ee": {
+        "address": "0xf6eb3bbb38dc1a2e2e70f010993a20e5f07978ee",
+        "isContract": true,
+        "nickEth": "51333333333333333335",
+        "transactions": [
+            {
+                "hash": "0x3c3802b8fb2f33baf6de3f12ac6161d5dc17d2ee8fc242002c1df1487e2e25e7"
+            },
+            {
+                "hash": "0xbbcbb8874293bc8f7b77e2c7261a00f1e63067effff49af5afacf048429fc7b1"
+            },
+            {
+                "hash": "0xdb8f0888c2f9f5f4f5a9c8035b1f4bdbf817737aa411c291e9a1f4bfced268db"
+            }
+        ]
+    },
+    "0xf72fa49f1fe73060d0787bf61039fa8a1996799d": {
+        "address": "0xf72fa49f1fe73060d0787bf61039fa8a1996799d",
+        "isContract": true,
+        "nickEth": "1000000000000000000",
+        "transactions": [
+            {
+                "hash": "0x0fd672b7075bacaa255c99883fcc57eeca185e0f5b24149fb6062e07c23fbba6"
+            }
+        ]
+    },
+    "0xf9d88811694af1d97788d6935cc54bd7e81f8055": {
+        "address": "0xf9d88811694af1d97788d6935cc54bd7e81f8055",
+        "isContract": true,
+        "nickEth": "11000000000000000000",
+        "transactions": [
+            {
+                "hash": "0xe2d9f46c6fc131d9eb6acf1e135cb0a83718404d6d0d7d94f1c69b424179540b"
+            }
+        ]
+    },
+    "0xfb0efd6d69c0921cf1863fc5a62ab90f4b4836c9": {
+        "address": "0xfb0efd6d69c0921cf1863fc5a62ab90f4b4836c9",
+        "isContract": true,
+        "nickEth": "3333333333333333334",
+        "transactions": [
+            {
+                "hash": "0xcb8b6e6ba6426ed45b504c8d4cdf30376aa029d3a3b6c0787be19ba599285dc4"
+            }
+        ]
+    },
+    "0xfb53a8d9e7ea0f67b74945d25b8d36606c54818c": {
+        "address": "0xfb53a8d9e7ea0f67b74945d25b8d36606c54818c",
+        "isContract": true,
+        "nickEth": "15000000000000000002",
+        "transactions": [
+            {
+                "hash": "0x88811967f0ce2ddb53197d0d88b91cf418999e4b845ab990aa16c4a93da6e709"
+            }
+        ]
+    },
+    "0xfb6315f71f04d9b27948674b25ec1794db43ebc5": {
+        "address": "0xfb6315f71f04d9b27948674b25ec1794db43ebc5",
+        "isContract": true,
+        "nickEth": "1000000000000000000",
+        "transactions": [
+            {
+                "hash": "0xd9747071447166927476fb51f379b0a54bd787d286969ec15a123662aab7a5f9"
+            }
+        ]
+    },
+    "0xfb83b48a5777102f919d79495f4d6529d4e6f61e": {
+        "address": "0xfb83b48a5777102f919d79495f4d6529d4e6f61e",
+        "isContract": true,
+        "nickEth": "1956521739130434783",
+        "transactions": [
+            {
+                "hash": "0x0a4a718c19678fb0aac158e3ad02f279ab75eb47b26cb088d3130415c8ccfe06"
+            }
+        ]
+    },
+    "0xfd601ed136b849cc70760e96ffb0d5acb86b00b5": {
+        "address": "0xfd601ed136b849cc70760e96ffb0d5acb86b00b5",
+        "isContract": true,
+        "nickEth": "333333333333333333",
+        "transactions": [
+            {
+                "hash": "0xbf0bbab0bcd78a00273af3e3f3d3911204a648ca1be7f301bb7d715d02059b97"
+            }
+        ]
+    },
+    "0xfe009aa9cbaeaf63e9d43a24b69a50c5b10b119f": {
+        "address": "0xfe009aa9cbaeaf63e9d43a24b69a50c5b10b119f",
+        "isContract": true,
+        "nickEth": "1128171980000000000",
+        "transactions": [
+            {
+                "hash": "0xe47f8192f85fdaa1331a5c8c756d70c878e69f0f7a6791d99085c4fe524d24f5"
+            }
+        ]
+    },
+    "0xfe16e8ec20e3494ea864697a9a4c44e6b3a07be7": {
+        "address": "0xfe16e8ec20e3494ea864697a9a4c44e6b3a07be7",
+        "isContract": true,
+        "nickEth": "130434782608695653",
+        "transactions": [
+            {
+                "hash": "0x32a789ac2428edc2e20bf993487bc8006561bb5ec123ab022367d3895e8d8ac5"
+            }
+        ]
+    },
+    "0xff8fb62c8a7d3bb7b825c6b859020d4eac9ea998": {
+        "address": "0xff8fb62c8a7d3bb7b825c6b859020d4eac9ea998",
+        "isContract": true,
+        "nickEth": "5600000000000000000",
+        "transactions": [
+            {
+                "hash": "0xcad1183ecf7f278713858d92c06f00934f79a75eb5c852352a3ac35de07e151c"
+            },
+            {
+                "hash": "0x3cecf515c3508a105ebdbd0a01ca03aff47f077e699e2cfe526214ef564f8652"
+            },
+            {
+                "hash": "0x90e872cb37153ee8f2fb2b34e93ee06d7c1f6d33c3724f4257a600e8624903b4"
+            }
+        ]
+    }
+}
+true

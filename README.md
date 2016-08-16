@@ -23,6 +23,11 @@ there is only a [widthdraw contract](https://blog.slock.it/how-to-use-the-withdr
 
 A [solution is on the way](http://ethereum.stackexchange.com/questions/7265/how-do-i-get-a-refund-for-the-amount-i-paid-in-excess-of-1-ether-to-100-the-dao), but I thought I'd get the chance to learn a bit about Ethereum and learn how to parse it's blockchain.
 
+The actors
+theDAOExtraBalance: https://etherscan.io/address/0x807640a13483f8ac783c557fcdf27be11ea4ac7a 
+TheDAO Contract:    https://etherscan.io/address/0xbb9bc244d798123fde783fcc1c72d3bb8c189413
+TheDaoCurator: 		https://etherscan.io/address/0xda4a4626d3e16e094de3225a751aab7128e96526 (Holds all the eth after the Hard fork)
+
 
 ## RESULTS AND STATS
 
@@ -56,8 +61,15 @@ and stores al Transactions and Addresses between
 
 The script searches for all transactions directed TO the DAO Contract [0xbb9bc244d798123fde783fcc1c72d3bb8c189413](https://etherscan.io/address/0xbb9bc244d798123fde783fcc1c72d3bb8c189413)
 
-it then
- 
+
+
+- Then the script differentiates between direct and proxied transactions: direct transactions are those sent directly by the end user from his wallet directly to theDAO, while proxied transactions are sent by intermediaries, like exchanges, to theDAO, in the name of the end user who bought the DAO Tokens. 
+
+- The script finds the right end owner, of both theDAO Tokens and the extrabalance, and the amount of extra balance they actually own, by tracing the stack, replaying every transaction and searching for the appropriate data in the Virtual Machine execution code. This is an interesting tool for anyone who wants to understand how to parse the Blockchain. 
+
+- then the script simply                  
+
+
 - **stores all these Transactions to the DAO in an array** that can be manipulated again
 - and creates a new **List of all the Addresses** that have sent ETH to the DAO, **adding up all the ETH they've ever sent to it between the two dates** in one unique balance.
 
