@@ -54,10 +54,15 @@ if(!INJECTEDPARAM_BLOCK1)    var INJECTEDPARAM_BLOCK1    = null;
 if(!INJECTEDPARAM_BLOCKLAST) var INJECTEDPARAM_BLOCKLAST = null;
 if(!INJECTEDPARAM_SHELLSCRIPT) var INJECTEDPARAM_SHELLSCRIPT = false;
 
-var dbug = true;
+var dbug = false;
 
 // load the trace parser function
-loadScript("./ethTraceParser.js")
+loadScript("./ethTraceParser.js");
+
+//load the 140 smart contract addresses that are known > read that file's header for an explanation
+// this loads the variable nick140Addresses but we converted to "smartContracts"
+loadScript("./output_140KnownSmartContracts.txt");
+var smartContracts = nick140Addresses;
 
 //console.log("INJECTEDPARAM_BLOCK1: " + INJECTEDPARAM_BLOCK1)
 //console.log("INJECTEDPARAM_BLOCKLAST: " + INJECTEDPARAM_BLOCKLAST)
@@ -70,10 +75,11 @@ loadScript("./ethTraceParser.js")
 // set it to false and the max amount of Blocks you want to parse for development purposes
 var parseAll = true;
 var parseMaxNBlocks = 20;
-var dbug = false;
+
+var showStats = false;
 
 var theDAO = "0xbb9bc244d798123fde783fcc1c72d3bb8c189413";
-var theDAOExtraBalanceAddress = "0x807640a13483f8ac783c557fcdf27be11ea4ac7a"
+var theDAOExtraBalanceAddress = "0x807640a13483f8ac783c557fcdf27be11ea4ac7a";
 
 // The first and last transactions that own extrabalance
 // I've inferred them by looking by hand the dates in Etherscan
@@ -88,15 +94,15 @@ var higherCostTXLast = "0x39e8a89762ed719c8812595f262a20276bf3a3ea9a0c9259a14029
 
 // The blocks that contain the first and last transaction that own extrabalance
 // the injectedParams are passed by the shell script, but if no shell script is used we already have the default values
-var firstExtraBalanceBlock = 1520861
-var blockOne  = INJECTEDPARAM_BLOCK1 || 1520861               // https://etherscan.io/block/1520861
-var blockLast = INJECTEDPARAM_BLOCKLAST || 1599205 //blockOne + parseMaxNBlocks; //1599205        // https://etherscan.io/block/1599205
-var totBlocks = blockLast - blockOne                      //78.344 Blocks to parse
+var firstExtraBalanceBlock = 1520861;
+var blockOne  = INJECTEDPARAM_BLOCK1 || 1520861;               // https://etherscan.io/block/1520861
+var blockLast = INJECTEDPARAM_BLOCKLAST || 1599205; //blockOne + parseMaxNBlocks; //1599205        // https://etherscan.io/block/1599205
+var totBlocks = blockLast - blockOne;                      //78.344 Blocks to parse
 
-var theDAOExtraTransactions = []  // pure list of transactions that have generated extrabalance and that can be conveniently parsed again
-var theDAOExtraOwners = {}        // a full object containing all the addresses of the extra balance owners + their transactions
-var simpleOwners = []             // the owners reduced to the address and total eth they've put in across all transactions
-var transactionsWithProblems = [] // contains a list of transactions caputered by the try catch system
+var theDAOExtraTransactions = [];  // pure list of transactions that have generated extrabalance and that can be conveniently parsed again
+var theDAOExtraOwners = {};        // a full object containing all the addresses of the extra balance owners + their transactions
+var simpleOwners = [];             // the owners reduced to the address and total eth they've put in across all transactions
+var transactionsWithProblems = []; // contains a list of transactions caputered by the try catch system
 var txsProxied = 0;                // simple counter of the proxied transactions
 var txsDirect = 0;
 
@@ -127,14 +133,16 @@ function parseExtraBalanceOwnersAndTransaction(_startBlock, _endBlock) {
     var foundTXLast = false;
 
     startTime = new Date();
-    console.log("--------------------------------------------------------------------------")
-    console.log("\tparse ExtraBalance Owners And Transaction STARTED \n\ton   " + startTime);
-    console.log("\tthere are " + (endBlock - startBlock) + " Blocks to parse   (outputting only the meaningful ones)");
-    console.log("--------------------------------------------------------------------------")
+    if (showStats) {
+        console.log("--------------------------------------------------------------------------");
+        console.log("\tparse ExtraBalance Owners And Transaction STARTED \n\ton   " + startTime);
+        console.log("\t there are " + (endBlock - startBlock) + " Blocks to parse   (outputting only the meaningful ones)");
+        console.log("--------------------------------------------------------------------------");
+    }
 
     // parse all blocks between the 2 specific blocks
     for (var i = startBlock; i <= endBlock; i++) {
-        if(dbug) console.log("parsing block " + i);
+        if (dbug) console.log("parsing block " + i);
 
         //retrieve the block - the "true" boolean will return all transactions as objects so that you can parse them
         // https://github.com/ethereum/wiki/wiki/JavaScript-API#web3ethgetblock
@@ -145,22 +153,36 @@ function parseExtraBalanceOwnersAndTransaction(_startBlock, _endBlock) {
             var totOwners = Object.keys(theDAOExtraOwners).length;
             var totTransactions = theDAOExtraTransactions.length;
 
-            //go through every transaction and look for those that have TO the DAO
-            block.transactions.forEach(function(tx) {
+            //go through every transaction and look for those that have TO the DAO or are known to be smart contract addresses
+            block.transactions.forEach(function (tx) {
 
                 // start storing only from the first transaction
                 // there might be some transactions to the DAO, before the one we are interested in, in the same block, so we discard them
                 // also exclude all transactions after the last one
                 if (!foundTX1 && (tx.hash == higherCostTXOne || i > firstExtraBalanceBlock)) foundTX1 = true;
 
+                // We should trace ALL transactions, not only those "TO" the DAO, because there is also another situation:
+                // there are transactions TO a smart contract, that then in turn call the DAO's functions
+                // unfortunately the only way to find out that these are in fact to the dao is to trace the transaction
+                // we should do that, but it would take a very long time to parse everything.
+                // in this case we are cheating and looking only for the transactions that we already know that are smart contracts
+                // and that we found through Nick's or Bookypooba's method of listening to theDAO events > read the output_140KnownSmartContracts.txt header for more details
+                // what we are simply doing here is a way for the script not to skip these transactions and parse them as all others
+                if (Object.keys(smartContracts).indexOf(tx.to) > -1 ) {
+                    if(dbug) console.log("ebo - found smart contract address: " + tx.to + "\tin tx: " + tx.hash);
+                    tx.isContract = true;
+                }
+
+
                 // this is a transaction to the DAO in the range of transactions that we want
                 // also it is a non-zero transaction ( there are few of those that happen for example in the out of gas exemption like "0xc251af08134c0bfd92579c570e31e4af950d7e077d18d586108afb7e59365a94")
-                if (tx.to == theDAO && tx.value != 0 && foundTX1 && !foundTXLast) {                          
-					
-					// exclude all transactions after the last one - put it here otherwise the code will skip the last transaction
-					if (!foundTXLast && tx.hash == higherCostTXLast) foundTXLast = true;	
-	
-                    if(dbug) console.log("parsing tx: " + tx.hash);
+                // or it is a transaction from one of the known smart contracts which can have a 0 value transaction
+                if ( ((tx.to == theDAO && tx.value != 0) || tx.isContract) && foundTX1 && !foundTXLast) {
+
+                    // exclude all transactions after the last one - put it here otherwise the code will skip the last transaction
+                    if (!foundTXLast && tx.hash == higherCostTXLast) foundTXLast = true;
+
+                    if (dbug) console.log("ebo - parsing tx: " + tx.hash);
 
                     // systematically trace the transaction > extract the CALL opcode > check if it is a proxied or direct creation
                     // and extract the final owner and real ExtraBalance value
@@ -169,14 +191,15 @@ function parseExtraBalanceOwnersAndTransaction(_startBlock, _endBlock) {
 
                     // avoid transactions that have problems and halt the script
                     // record the problematic tx to review later and skip to next tx
-                    if(tracedTX == undefined) {
-                      transactionsWithProblems.push(tx.hash);
-                      return true
+                    if (tracedTX == undefined || tracedTX == "Out of Gas") {
+                        if (dbug) console.log("ebo - found problematic transaction - tx is: " + tracedTX);
+                        transactionsWithProblems.push(tx.hash);
+                        return true
                     }
 
                     //The transaction was to the DAO store it in the transaction list, save only the hash to save space
                     // theDAOExtraTransactions.push(tx.hash);
-                    theDAOExtraTransactions.push(tracedTX) //store the whole object
+                    theDAOExtraTransactions.push(tracedTX); //store the whole object
 
                     // register for the stats
                     if (tracedTX.txType == "proxy")       txsProxied++;
@@ -190,22 +213,30 @@ function parseExtraBalanceOwnersAndTransaction(_startBlock, _endBlock) {
                     //add the time directly to the transaction so you can read it directly both as timestamp and as a human readable date in UTC
                     //tx.time = transactionTimeStamp(block.timestamp)
 
-                    if (!theDAOExtraOwners[from]) {
+                    //create a unique object for the transaction that you can extend conditionally
+                    var txo = {
+                            hash:  tx.hash,
+                            ebWei: tracedTX.ebWei,
+                            type:  tracedTX.txType
+                            //time: tx.time,
+                    };
+                    if(tracedTX.inputDataString) {
+                        tx.inputDataString = tracedTX.inputDataString;
+                        tx.inputDataHex    = tracedTX.inputDataHex;
+                    }
 
+                    if (!theDAOExtraOwners[from]) {
                         //first time we encounter this sending address,
                         //create an object and store it in the list of ExtraOwners
                         //+ store only some of the info of the transaction to save space
                         //+ Bignumber management in js https://github.com/ethereum/wiki/wiki/JavaScript-API#a-note-on-big-numbers-in-web3js
                         theDAOExtraOwners[from] = {
-                            address: from,
-                            balanceTot: web3.toBigNumber(tracedTX.ebWei),
-                            transactions: [{
-                                hash: tx.hash,
-                                ebWei: tracedTX.ebWei,
-                                type: tracedTX.txType,
-                                //time: tx.time,
-                            }]
-                        }
+                            address:      from,
+                            balanceTot:   web3.toBigNumber(tracedTX.ebWei),
+                            transactions: [txo]
+                        };
+
+                        if(tx.isContract) theDAOExtraOwners[from].isContract = true;
 
 
                     } else {
@@ -227,12 +258,7 @@ function parseExtraBalanceOwnersAndTransaction(_startBlock, _endBlock) {
                         // ACHTUNG: we are adding the eth balance but this number does not tell us when he bought it and in what increase step his tokens belong to
                         // this only tells us a total amount of ether that he has put in
                         owner.balanceTot = newBalance;
-                        owner.transactions.push({
-                            hash: tx.hash,
-                            ebWei: tracedTX.ebWei,
-                            type: tracedTX.txType,
-                            //time: tx.time,
-                        });
+                        owner.transactions.push(txo);
 
                     }
 
@@ -243,19 +269,21 @@ function parseExtraBalanceOwnersAndTransaction(_startBlock, _endBlock) {
         // finished parsing the block display the feedback (only if there was noteworthy info)
         // also output it only if there is no "INJECTEDPARAM_SHELLSCRIPT" which means that we are running as a standalone script and we need a visual feedback of the process
         if (!INJECTEDPARAM_SHELLSCRIPT) {
-          var newTXs = theDAOExtraTransactions.length - totTransactions;
-          var newOwners = Object.keys(theDAOExtraOwners).length - totOwners;
-          if (newOwners > 0 || newTXs > 0)
-              console.log("parsed block " + i + " / " + (endBlock-i) + " left  -  found new OWNERS: " + newOwners + " of " + Object.keys(theDAOExtraOwners).length + "  -  new TRANSACTIONS: " + newTXs + " of " + theDAOExtraTransactions.length);
+            var newTXs = theDAOExtraTransactions.length - totTransactions;
+            var newOwners = Object.keys(theDAOExtraOwners).length - totOwners;
+            if ((newOwners > 0 || newTXs > 0) && showStats )
+                console.log("parsed block " + i + " / " + (endBlock - i) + " left  -  found new OWNERS: " + newOwners + " of " + Object.keys(theDAOExtraOwners).length + "  -  new TRANSACTIONS: " + newTXs + " of " + theDAOExtraTransactions.length);
 
         }
 
     }
 
     endTime = new Date();
-    console.log("\n\n--------------------------------------------------------------------------")
-    console.log("parse ExtraBalance Owners And Transaction DONE on   " + endTime);
-    console.log("--------------------------------------------------------------------------")
+    if (showStats) {
+        console.log("\n\n--------------------------------------------------------------------------");
+        console.log("parse ExtraBalance Owners And Transaction DONE on   " + endTime);
+        console.log("--------------------------------------------------------------------------");
+    }
 }
 
 
@@ -275,9 +303,9 @@ function transactionTimeStamp(blockTimeStamp) {
 
 // reduces theDAOExtraOwners to a simple list of  owner: balance
 function getSimpleOwners() {
-    var owners = Object.keys(theDAOExtraOwners)
+    var owners = Object.keys(theDAOExtraOwners);
         //console.log(owners.length + " owners: " + JSON.stringify(owners));
-    var ownersSimple = []
+    var ownersSimple = [];
     for (o in theDAOExtraOwners) {
         ownersSimple.push({
             address: theDAOExtraOwners[o].address,
@@ -348,7 +376,7 @@ function saveToFile(fileDirAndName, objName, beautify) {
 
 
 
-//------------------------------------
+/*------------------------------------
 //      EXECUTE IT
 //------------------------------------
 
@@ -414,3 +442,5 @@ if (isNode) {
 
   console.log("ENDWORD");
 }
+
+    */

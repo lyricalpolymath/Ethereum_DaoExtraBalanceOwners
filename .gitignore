@@ -1,3 +1,5 @@
 # ignore the node_modules that you can install with   $ npm install
 node_modules
-analysis
+_analysis
+
+.idea
