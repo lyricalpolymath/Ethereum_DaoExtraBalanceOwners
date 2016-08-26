@@ -1,4 +1,5 @@
-// downloaded from 
+// downloaded from https://raw.githubusercontent.com/Arachnid/extrabalance/master/extrabalance.json
+// and added the var at the beginning by hand to be able to process it in the geth console
 var nickExtraBalance = [
     [
         "0x0000000000015b23c7e20b0ea5ebd84c39dcbe60", 

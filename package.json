@@ -25,6 +25,8 @@
   },
   "homepage": "https://github.com/lyricalpolymath/Ethereum_DaoExtraBalanceOwners#readme",
   "dependencies": {
+    "csv-parse": "^1.1.7",
+    "csvtojson": "^1.0.0",
     "underscore": "^1.8.3",
     "web3": "^0.16.0"
   }

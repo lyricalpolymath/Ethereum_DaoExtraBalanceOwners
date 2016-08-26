@@ -37,6 +37,12 @@ read the README file file for the 3 ways in which you can run this script
     <http://www.gnu.org/licenses/>.
 */
 
+// execute first half of the blocks
+//$ ./extraBalanceRunScript 1520861 1560033 > output_Blocks_1520861-1560033.txt
+// second half
+//$ ./extraBalanceRunScript 1560034 1599205 > output_Blocks_1560034-1599205.txt
+
+
 console.log("STARTWORD");
 
 var Web3 = require('web3');
@@ -54,14 +60,14 @@ if(!INJECTEDPARAM_BLOCK1)    var INJECTEDPARAM_BLOCK1    = null;
 if(!INJECTEDPARAM_BLOCKLAST) var INJECTEDPARAM_BLOCKLAST = null;
 if(!INJECTEDPARAM_SHELLSCRIPT) var INJECTEDPARAM_SHELLSCRIPT = false;
 
-var dbug = false;
+
 
 // load the trace parser function
-loadScript("./ethTraceParser.js");
+loadScript("./extraBalanceOwnersTraceParser.js");
 
 //load the 140 smart contract addresses that are known > read that file's header for an explanation
 // this loads the variable nick140Addresses but we converted to "smartContracts"
-loadScript("./output_140KnownSmartContracts.txt");
+loadScript("./../02_outputs/output_140KnownSmartContracts.txt");
 var smartContracts = nick140Addresses;
 
 //console.log("INJECTEDPARAM_BLOCK1: " + INJECTEDPARAM_BLOCK1)
@@ -69,14 +75,18 @@ var smartContracts = nick140Addresses;
 //console.log("INJECTEDPARAM_SHELLSCRIPT: " + INJECTEDPARAM_SHELLSCRIPT)
 
 
-//----------------------------------------------
+//---------------------------------------------- CUSTOMIZABLE VARIABLES
 
 // if parseAll = true it will parse all 78.344 blocks and it will take a long time
 // set it to false and the max amount of Blocks you want to parse for development purposes
 var parseAll = true;
-var parseMaxNBlocks = 20;
+var parseMaxNBlocks = 2;
 
-var showStats = false;
+var showStats = true;
+var dbug = false;
+
+//---------------------------------------------- end
+
 
 var theDAO = "0xbb9bc244d798123fde783fcc1c72d3bb8c189413";
 var theDAOExtraBalanceAddress = "0x807640a13483f8ac783c557fcdf27be11ea4ac7a";
@@ -89,15 +99,15 @@ var theDAOExtraBalanceAddress = "0x807640a13483f8ac783c557fcdf27be11ea4ac7a";
 // all transactions are visible in Etherescan between pages
 //      https://etherscan.io/txs?a=0xbb9bc244d798123fde783fcc1c72d3bb8c189413&p=2044
 // and  https://etherscan.io/txs?a=0xbb9bc244d798123fde783fcc1c72d3bb8c189413&p=1467
-var higherCostTXOne = "0xb989cba5fad84d78e305909bf97605dc35b3cb6caf0e32a2009c3a2dda876003"
-var higherCostTXLast = "0x39e8a89762ed719c8812595f262a20276bf3a3ea9a0c9259a140296e5fbaa7da"
+var higherCostTXOne = "0xb989cba5fad84d78e305909bf97605dc35b3cb6caf0e32a2009c3a2dda876003";
+var higherCostTXLast = "0x39e8a89762ed719c8812595f262a20276bf3a3ea9a0c9259a140296e5fbaa7da";
 
 // The blocks that contain the first and last transaction that own extrabalance
 // the injectedParams are passed by the shell script, but if no shell script is used we already have the default values
 var firstExtraBalanceBlock = 1520861;
-var blockOne  = INJECTEDPARAM_BLOCK1 || 1520861;               // https://etherscan.io/block/1520861
+var blockOne  = INJECTEDPARAM_BLOCK1 || 1520861;    // https://etherscan.io/block/1520861
 var blockLast = INJECTEDPARAM_BLOCKLAST || 1599205; //blockOne + parseMaxNBlocks; //1599205        // https://etherscan.io/block/1599205
-var totBlocks = blockLast - blockOne;                      //78.344 Blocks to parse
+var totBlocks = blockLast - blockOne;               //78.344 Blocks to parse
 
 var theDAOExtraTransactions = [];  // pure list of transactions that have generated extrabalance and that can be conveniently parsed again
 var theDAOExtraOwners = {};        // a full object containing all the addresses of the extra balance owners + their transactions
@@ -134,10 +144,10 @@ function parseExtraBalanceOwnersAndTransaction(_startBlock, _endBlock) {
 
     startTime = new Date();
     if (showStats) {
-        console.log("--------------------------------------------------------------------------");
-        console.log("\tparse ExtraBalance Owners And Transaction STARTED \n\ton   " + startTime);
-        console.log("\t there are " + (endBlock - startBlock) + " Blocks to parse   (outputting only the meaningful ones)");
-        console.log("--------------------------------------------------------------------------");
+        console.log("//--------------------------------------------------------------------------");
+        console.log("\t//parse ExtraBalance Owners And Transaction STARTED \n\ton   " + startTime);
+        console.log("\t//there are " + (endBlock - startBlock) + " Blocks to parse   (outputting only the meaningful ones)");
+        console.log("//--------------------------------------------------------------------------");
     }
 
     // parse all blocks between the 2 specific blocks
@@ -197,10 +207,6 @@ function parseExtraBalanceOwnersAndTransaction(_startBlock, _endBlock) {
                         return true
                     }
 
-                    //The transaction was to the DAO store it in the transaction list, save only the hash to save space
-                    // theDAOExtraTransactions.push(tx.hash);
-                    theDAOExtraTransactions.push(tracedTX); //store the whole object
-
                     // register for the stats
                     if (tracedTX.txType == "proxy")       txsProxied++;
                     else if (tracedTX.txType == "direct") txsDirect++;
@@ -223,7 +229,13 @@ function parseExtraBalanceOwnersAndTransaction(_startBlock, _endBlock) {
                     if(tracedTX.inputDataString) {
                         tx.inputDataString = tracedTX.inputDataString;
                         tx.inputDataHex    = tracedTX.inputDataHex;
-                    }
+                    } 
+                           
+
+					// The transaction was to the DAO store it in the transaction list, save only the hash to save space
+                    // theDAOExtraTransactions.push(tx.hash);
+                    theDAOExtraTransactions.push(txo); //store the whole object
+
 
                     if (!theDAOExtraOwners[from]) {
                         //first time we encounter this sending address,
@@ -280,9 +292,9 @@ function parseExtraBalanceOwnersAndTransaction(_startBlock, _endBlock) {
 
     endTime = new Date();
     if (showStats) {
-        console.log("\n\n--------------------------------------------------------------------------");
-        console.log("parse ExtraBalance Owners And Transaction DONE on   " + endTime);
-        console.log("--------------------------------------------------------------------------");
+        console.log("\n\n//--------------------------------------------------------------------------");
+        console.log("//parse ExtraBalance Owners And Transaction DONE on   " + endTime);
+        console.log("//--------------------------------------------------------------------------");
     }
 }
 
@@ -318,10 +330,10 @@ function getSimpleOwners() {
 
 //sums all ETH balances and returns one unique value
 function getTotalETH() {
-    var owners = Object.keys(theDAOExtraOwners)
+    //var owners = Object.keys(theDAOExtraOwners);
     var totWEI = new BigNumber(0);
     for (o in theDAOExtraOwners) {
-        totWEI = totWEI.plus(theDAOExtraOwners[o].balanceTot)
+        totWEI = totWEI.plus(theDAOExtraOwners[o].balanceTot);
     }
     return totWEI.div(ethDivisor);
 }
@@ -339,7 +351,7 @@ function getStats() {
         block_end: endBlock,
         time_start: startTime.toUTCString(),
         time_end: endTime.toUTCString(),
-        time_duration: msToTime(endTime - startTime),
+        time_duration: msToTime(endTime - startTime)
     }
 }
 
@@ -364,7 +376,7 @@ function msToTime(duration) {
 // @param beautify          Boolean - default false which saves the string minified to save space. if true, it will save it with 4 indents
 */
 function saveToFile(fileDirAndName, objName, beautify) {
-    var indent = (beautify) ? 4 : 0
+    var indent = (beautify) ? 4 : 0;
     fs.writeFile(fileDirAndName, JSON.stringify(objName, null, indent), function(err) {
         if (err) {
             console.log(fileDirAndName + " >> ERROR WRITING FILE!!  ");
@@ -376,7 +388,7 @@ function saveToFile(fileDirAndName, objName, beautify) {
 
 
 
-/*------------------------------------
+//------------------------------------
 //      EXECUTE IT
 //------------------------------------
 
@@ -398,14 +410,14 @@ if (parseAll) {
 
 
 //Save the output and/or trace it to the console
-console.log("\n\n------------------\n STATS \n------------------")
-var stats = getStats()
+console.log("\n\n//------------------\n// STATS \n//------------------");
+var stats = getStats();
 console.log(JSON.stringify(stats, null, 8));
 
 
 // recognizes if it's node and will save the files to the output folder
 if (isNode) {
-  console.log("\n\n------------------\n FILES \n------------------")
+  console.log("\n\n------------------\n FILES \n------------------");
   saveToFile("outputs/stats.txt", stats, true);
 
   // most important file that will allow you to parse again each transaction timestamp
@@ -417,30 +429,30 @@ if (isNode) {
 
   saveToFile("outputs/ExtraBalanceTransactions.txt", theDAOExtraTransactions);
 
+
+
+
 } else {
   //it's not Node output to the console
-  console.log("\n\n------------------\n SIMPLE OWNERS \n------------------")
+  console.log("\n\n//------------------\n// SIMPLE OWNERS \n//------------------");
   simpleOwners = getSimpleOwners();
-  console.log("Simplifief Owners and Balance: ", JSON.stringify(simpleOwners, null, 0));
+  console.log("var simpleOwners = ", JSON.stringify(simpleOwners, null, 0));
 
 
-  console.log("\n\n------------------\n FULL OWNERS + TRANSACTIONS \n------------------")
+  console.log("\n\n------------------\n FULL OWNERS + TRANSACTIONS \n------------------");
   //console.log("theDAOExtraOwners: ", JSON.stringify(theDAOExtraOwners, null, 4)) //beautified
-    console.log("theDAOExtraOwners: ", JSON.stringify(theDAOExtraOwners, null, 0))
+    console.log("var theDAOExtraOwners = ", JSON.stringify(theDAOExtraOwners, null, 0));
 
-  console.log("\n\n------------------\n ALL TRANSACTIONS \n------------------")
-  console.log("theDAOExtraTransactions: ", JSON.stringify(theDAOExtraTransactions, null, 0));
+
+  console.log("\n\n------------------\n ALL TRANSACTIONS \n------------------");
+  console.log("var theDAOExtraTransactions = ", JSON.stringify(theDAOExtraTransactions, null, 0));
 
 
   if (transactionsWithProblems.length > 0) {
-    console.log("\n\n------------------\n TRANSACTIONS WITH PROBLEMS \n------------------")
-    console.log("transactionsWithProblems = ", JSON.stringify(transactionsWithProblems,null,0))
+    console.log("\n\n------------------\n TRANSACTIONS WITH PROBLEMS \n------------------");
+    console.log("var transactionsWithProblems = ", JSON.stringify(transactionsWithProblems,null,0));
   }
-
-  //console.log("\n\n------------------\n TRANSACTIONS \n------------------")
-  //console.log("theDAOExtraTransactions: ", JSON.stringify(theDAOExtraTransactions));
 
   console.log("ENDWORD");
 }
 
-    */

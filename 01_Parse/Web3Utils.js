@@ -45,7 +45,7 @@
  For more information on this, and how to apply and follow the GNU AGPL, see
  <http://www.gnu.org/licenses/
 
- */
+*/
 
 
 
@@ -56,7 +56,7 @@ var pathToLibs = "/usr/local/lib/node_modules";
 Web3Utils = {};
 
 
-/* conveniente wrapper to define if a transaction is out of gas or not 
+/* find if a transaction is out of gas or not 
 * @param		- String or Object > it can accept the string of the transaction hash OR directly the trace object
 * @return 		- Boolean - true if the transaction is out of gas or false
 *
@@ -82,8 +82,84 @@ Web3Utils.isOutOfGas = function (tx) {
 		//it already a trace transaction - simply check the last 
 		sl = tx.structLogs
 	}
-	var lastLog = sl[ sl.length -1 ];
-	return (lastLog.error == "Out of gas");
+	// usually the last log will be the out of gas exeption and the computation will halt
+	// but there are rare cases like this http://etherscan.io/tx/0x2309d07a0eaf811d0b68c9cc9e28843a775ba288475f623940ba6cff51d771da
+	// where the out of gas error will appear before the last log (in this case at index at index 366 of the structLogs)
+	// and the computation seems to keep carrying on (untill the last index which in this case is 578 with a RETURN CALL)
+	// therefore we look for any "error" which matches the "out of gas"
+	//var lastLog = sl[ sl.length -1 ];
+	//return (lastLog.error == "Out of gas");
+	for(var i=0; i < sl.length; i++) {
+		if (sl[i].error == "Out of gas") return true
+	}
+	return false 
+};
+
+
+//TODO - isContract - find a definitive way to find if it is a contract
+/**
+ * returns if a given address is a contract or not
+ * WARNING: DO NOT USE! the function is not complete and there are some special cases that yield false negatives
+ * (addresses that are contracts will be returned as false)
+ * like in this case http://etherscan.io/address/0x2b3ab2fdb0b9111d25ebd6724bd1b56c04b80796
+ *
+ * @param address		{String} of the address reference
+ * @returns {boolean}
+ *
+ * examples - normal address
+ * web3.eth.getCode("0x0015d5329a67e22ec78cca840e0a160fa0dc17b8")
+ * returns "0x"
+ *
+ * examples - contract address
+ * web3.eth.getCode("0x01861c6dfab20bae0fa4ee698912630697d78ce4")
+ * returns: "0x3660008037602060003660003473273930d21e01ee25e4c219b63259d214872220a261235a5a03f21560015760206000f3"
+ *  BUT this
+ *  web3.eth.getCode("0x2b3ab2fdb0b9111d25ebd6724bd1b56c04b80796")
+ *  will return "0x" in spute of being an address
+ */
+Web3Utils.isContract = function(address) {
+	var code = web3.eth.getCode(address);
+	return (code != "0x");
+};
+
+
+
+
+/* get all errors if any 
+* this will take longer than Web3Utils.isOutOfGas() since it will read all logs, while isOutOfGas will return as soon as it finds the first one
+* @param		- String or Object > it can accept the string of the transaction hash OR directly the trace object
+* @return 		- Boolean - false if no errors where found
+*				- String  - if it finds only one error it will return it as a string
+*				- Array   - if it finds more than one error it will return all of them in an array
+*
+* example usages:
+* //testing with a string  0x2309d07a0eaf811d0b68c9cc9e28843a775ba288475f623940ba6cff51d771da
+* var txErrors1 = Web3Utils.getTXErrors("0x2309d07a0eaf811d0b68c9cc9e28843a775ba288475f623940ba6cff51d771da")
+* 
+* //testing with a Tx Traced
+* var txTrace = debug.traceTransaction("0x2309d07a0eaf811d0b68c9cc9e28843a775ba288475f623940ba6cff51d771da")
+* var txErrors2 = Web3Utils.getTXErrors(txTrace);
+*/
+Web3Utils.getTXErrors = function(tx) {
+	var sl;
+	if (typeof(tx) == "string") {
+		//it' a string - then you need to trace the transaction
+		var txTrace = debug.traceTransaction(tx);
+		sl = txTrace.structLogs
+	
+	} else if (typeof(tx) == "object" && tx.structLogs != undefined) {
+		//it already a trace transaction - simply check the last 
+		sl = tx.structLogs
+	}
+	
+	var errors = [];
+	for(var i=0; i < sl.length; i++) {
+		if(sl[i].error != "") errors.push( sl[i].error ) 
+	} 
+  
+	if 		(errors.length == 0) return false;
+	else if (errors.length == 1) return errors[0];
+	else if (errors.length > 1)  return errors;		
 };
  
  
@@ -125,10 +201,15 @@ Web3Utils.getCallWithFuncHash = function(txTrace, funcHash) {
 	return undefined 
 };
 
+        
+
+//TODO - getCallWithAddress - returns the CALL in the stack that sends balance to a specific address
+// use this if you don't know the function hashes that you'd be looking for with  Web3Utils.getCallWithFuncHash
+//Web3Utils.getCallWithAddress = function(txTrace, address)
 
 
 /**
-* Blockchain Parsing Utility function
+* get Function Hash Index
 * retrieves the index in the stack of the first occurrance of the funcHashes passed. 
 * Reason: if the user has given an inputData with the transaction, the funcHash will be at index1 instead or index0
 * and also the subsequent position of the parameters in the stack (the address, the wei amount, etc) changes from function to function
@@ -163,6 +244,7 @@ Web3Utils.getFuncHashIndex = function(call, funcHash) {
 	}
 	return indx
 };
+  
 
 // Quick tests for the Web3Utils.getFuncHashIndex
 //var arr = [	"00000000000000000000000000000000000000000000000000000000no",

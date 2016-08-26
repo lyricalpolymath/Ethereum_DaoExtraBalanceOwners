@@ -1,6 +1,0 @@
-//------------------
-// STATS - COMPLETE 
-//------------------
-simpleOwners: 11361  	 fullOwners: 11361
-tot Extra Balance ETH: 369740.558185027463534822
-tot Transactions: 23848
