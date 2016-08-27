@@ -51,7 +51,7 @@
 
 var pathToLibs = "/usr/local/lib/node_modules";
 //loadScript(pathToLibs + "/underscore/underscore-min.js");
-
+//loadScript("/usr/local/lib/node_modules/underscore/underscore-min.js");
 
 Web3Utils = {};
 
