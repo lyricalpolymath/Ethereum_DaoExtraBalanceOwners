@@ -71,9 +71,10 @@ Web3Utils = {};
 * console.log("test2 - object: " + test2)
 */
 Web3Utils.isOutOfGas = function (tx) {
-	//console.log("Web3Utils.isOutOfGas - typeof tx " + typeof(tx));
+	console.log("Web3Utils.isOutOfGas - typeof tx " + typeof(tx));
 	var sl;
-	if (typeof(tx) == "string") {
+	if (typeof(tx) == "string") { 
+		console.log("Web3Utils.isOutOfGas - string - trace the transaction")
 		//it' a string - then you need to trace the transaction
 		var txTrace = debug.traceTransaction(tx);
 		sl = txTrace.structLogs
@@ -90,7 +91,10 @@ Web3Utils.isOutOfGas = function (tx) {
 	//var lastLog = sl[ sl.length -1 ];
 	//return (lastLog.error == "Out of gas");
 	for(var i=0; i < sl.length; i++) {
-		if (sl[i].error == "Out of gas") return true
+		if (sl[i].error == "Out of gas") {
+			console.log("Web3Utils.isOutOfGas - found out of gas in index: " +i)
+			return true;
+		}	
 	}
 	return false 
 };
@@ -152,7 +156,8 @@ Web3Utils.getTXErrors = function(tx) {
 		sl = tx.structLogs
 	}
 	
-	var errors = [];
+	var errors = []; 
+	//could do it faster with  errors = _.compact(_.pluck(sl, "error"))
 	for(var i=0; i < sl.length; i++) {
 		if(sl[i].error != "") errors.push( sl[i].error ) 
 	} 
@@ -254,3 +259,7 @@ Web3Utils.getFuncHashIndex = function(call, funcHash) {
 //console.log("index of 'no': " + Web3Utils.getFuncHashIndex({ stack: arr }, "no"));									// returns: 0
 //console.log("index of ['other2', 'find1']: " + Web3Utils.getFuncHashIndex({ stack: arr }, ["other2", "find1"]));	// returns: 0
 //console.log("index of 'missingWord' (should be -1): " + Web3Utils.getFuncHashIndex({ stack: arr }, "missingWord"));	// returns: -1
+
+
+
+//Web3Utils.ScriptTimer = 

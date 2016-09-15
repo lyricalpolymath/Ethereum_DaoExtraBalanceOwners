@@ -7,13 +7,15 @@
 // 2- proxied transaction        1534687,   0x0ad78201811a6dbe74f9e6510282f2b887f5c04201be559e073584842bec6360
 // 3- txs with input data        1537724,   0xeea3be70ab2204693fb0bc30a37ab09aa47f790bd61f058efd7c2be4fa64a66b
 // 4- txs from smart contract    1595058,   0x9b9cc86509f86070edea8761c6e36e704e988fb57962838716df6746d2031303
-// 5- out of gas                 1521125,   0x07a3d34f3618d4aa042b60f41bff8bb12192540538a179626e31fa27ecf164a1
+// 5- out of gas                 1521125,   0x07a3d34f3618d4aa042b60f41bff8bb12192540538a179626e31fa27ecf164a1 
+// 5- out of gas (not last log)	 1597620	0x50f3126d52b788c7cf748cae6611347839970f87daf57cfd846fc967acbcba2e
 
 // direct transactions  - the user sent eth to the dao directly from his/her wallet
 // proxied transactions - an intermediary such as an exchange (ie Poloniex) bought the eth for an end user
 // tx with input data   - direct or proxied transactions where there is also an input data passed onto the transaction
 // txs from smart contracts - addresses that don't belong to humans but to smart contracts that call theDAO smart contract
-// out of gas txs       - tx that dindn't go through but if you look at them in the simple way they still seem to have sent a value
+// out of gas txs       - tx that dindn't go through but if you look at them in the simple way they still seem to have sent a value 
+//						 there are also out of gas situation where the "Out of gas" error doesn't happen on the last log and the computation seems to continue
 
 // RUN - interactive
 // geth attach

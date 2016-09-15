@@ -1,0 +1,180 @@
+//parse the main addresses that differ from Nick > check if the txs are out of Gas > and if yes recalculate the DAO Balance   
+
+
+// run like this
+// geth --exec 'loadScript("outputAnalysis_04_findingBBExtraEth.txt")' attach
+            
+ 
+loadScript("./../01_Parse/Web3Utils.js");
+
+// imports the blocks where the transactions start to cause problems
+// first block that didn't match = 1525772
+// loadScript('./../02_outputs/output_byOtherPeople/'); // transactionsByBlock
+
+// import the differences with Nich, and parses all transactions beloging to these addresses 
+// searching for out of gas and generates a new 
+loadScript('./../02_outputs/output_byOtherPeople/NickC_03_diffedBBvsNick_new.txt') // BB_Nick_diffedValues
+
+// loads my full output to exclude certain values
+loadScript('./../02_outputs/output_01_full.txt')  //theDAOExtraOwners
+
+
+var maxTestAddresses = 2//13                // how many BB_Nick_diffedValues should we be testing
+var totWEIDeduced = web3.toBigNumber(0);	// add upp all ETH you are taking out of theDAOExtraOwners to see how much it is
+var problematicTXs = [];                    // store all transactions that where found in theDAOExtraOwners, but should not have been there
+var newDAOExtraOwners = {};				   
+
+
+for(var i=1; i < maxTestAddresses; i++) {
+	
+	var owProblem =  BB_Nick_diffedValues[i].address;
+	var ow = theDAOExtraOwners[owProblem];
+	var owTxsCount = ow.transactions.length; // store the amount before splicing
+	console.log("\n-------------------\nverifying this ", JSON.stringify(BB_Nick_diffedValues[i], null, 0));
+	console.log("and it's transactions: " + owTxsCount) 
+	//console.log("\nverifying this: ", JSON.stringify(ow, null, 4)); 
+	
+	//ow.transactions.forEach( function(tx, index){ //if you splice use a for loop
+	for(var t = ow.transactions.length-1; t >= 0; t-- ){
+		var tx = ow.transactions[t];
+		console.log("\ntesting tx: " + tx.hash)
+	     var isOutOfGas = Web3Utils.isOutOfGas(tx.hash);
+		 if (isOutOfGas == true ) {
+			console.log("***found transaction out of gas: " + tx.hash)
+			//deduce the value from the balance tot 
+			ow.balanceTot = (web3.toBigNumber(ow.balanceTot).minus(tx.ebWei)).toString(10) // check if you have to make bigNumber of tx.ebWei 			         
+			
+			//add it to totWEIDeduced
+			totWEIDeduced = totWEIDeduced.add(tx.ebWei);
+			
+			//store this transaction as one to test
+			tx.isOutOfGas = true; 
+			problematicTXs.push(tx); 
+			
+			//now delete this transaction from ow - let's see how for each behaves or change to for loop form the end
+			//console.log("going to splice on index: " + index)
+			ow.transactions.splice(t, 1);
+		}
+	}   
+	   
+	// now that we have deleted all wrong transactions and balances store them
+	newDAOExtraOwners[owProblem] = ow;
+	   
+	if(owTxsCount != ow.transactions.length ){ 
+		var weiDiff = web3.toBigNumber(ow.balanceTot).minus( BB_Nick_diffedValues[i].weiN)
+		console.log("corrected to balanceTot WEI: " + ow.balanceTot.toString(10) + "\t ETH: " + web3.fromWei(ow.balanceTot) );
+		console.log("new difference -        WEI: " + weiDiff                    + "\t ETH: " + web3.fromWei(weiDiff) )
+		console.log("corrected to: ", JSON.stringify(ow, null, 4));
+	}
+	 
+}
+
+
+console.log("\n\n//---------------------\n// PROBLEMS ANALYSIS \n//---------------------");
+console.log("//found problematic transactions " + problematicTXs.length);
+console.log("//Tot balance DEDUCED - WEI: " + totWEIDeduced.toString(10) + "\tETH: " + web3.fromWei(totWEIDeduced))                                         
+
+
+console.log("\n\n//---------------------\n// SUBSEST OF NEW DAO OWNERS \n//---------------------"); 
+console.log("//modified addresses " + Object.keys(newDAOExtraOwners).length);
+console.log("\nvar newDAOExtraOwners = ", JSON.stringify(newDAOExtraOwners, null, 4)); 
+
+
+console.log("\n\n//---------------------\n// PROBLEMATIC TRANSACTIONS \n//---------------------"); 
+console.log("var problematicTXs = [");
+for(tx in problematicTXs) console.log("\t" + JSON.stringify(problematicTXs[i],null,0) ); 
+console.log("]")
+
+
+/*
+// there are still poblems in the Out of Gas test  - the last 2 transactions are out of gas but don't pass the test 
+
+So just to understand what happens here http://etherscan.io/tx/0x3ed31ad3436918d1d75007b495e406340db4f84d9178b460d94150d7fc6cf345
+- the user send 4 Ether to TheDao during the creation period
+- the DAO assigns him 307.69230769 Tokens instead of 400, because we are already in the extraBalance period
+- the DAO attemps to send the proportional split (923076923076923077 WEI or "0.923076923076923077" ETH) to the ExtraBalance
+- BUT IT FAILS (some ouf of GAS happens here)
+- therefore those 0.92 extra ETH are left in the DAO 
+
+- however the user can't widthdraw them because he doesn't have DAO Tokens for these 0.92 ETH
+
+
+
+-------------------
+verifying this  {"address":"0x00c7d701fa374d9f26b3b09e9a3f6b766a38baff","weiB":"2317948717948717951","weiDiff":"1755738269974319000","weiN":"562210447974398951"}
+and it's transactions: 5
+verifying this:  {
+    "address": "0x00c7d701fa374d9f26b3b09e9a3f6b766a38baff",
+    "balanceTotAfterDeletingSpecialOOG": "230769230769230770",
+	"balanceTot":                        "2317948717948717951"
+	"NickBalance":                       "562210447974398951"
+	"weiDiff":                           "1755738269974319000"
+    "transactions": [
+        {
+            "ebWei": "230769230769230770",
+            "hash": "0xbc347f525a622d788f91b2c034bf71925810fde4d765b83fab99c7a3977cd0c5",
+            "type": "direct"
+        },
+        {
+            "ebWei": "923076923076923077",
+            "hash": "0x3ed31ad3436918d1d75007b495e406340db4f84d9178b460d94150d7fc6cf345",   //OUT OF GAS
+            "type": "direct"
+        },
+        {
+            "ebWei": "369230769230769231",
+            "hash": "0x4cf0d5de1b9d129271711dc316a43c2c6cadcdcb75f334298fbb44149982529e",    //OUT OF GAS
+            "type": "direct"
+        },
+        {
+            "ebWei": "461538461538461539",
+            "hash": "0x2fa0d970b9e6e4453ac718bae74e3fcf57ea300a214f3c31454c62c428f55df2",   //OUT OF GAS
+            "type": "direct"
+        },
+        {
+            "ebWei": "333333333333333334",                                                  
+            "hash": "0x50f3126d52b788c7cf748cae6611347839970f87daf57cfd846fc967acbcba2e",   //OUT OF GAS
+            "type": "direct"
+        }
+    ]
+}   
+
+//deleting all out of gas I'm left with balanceTot = "230769230769230770"  (from the first transaction)
+// which is still different from             weiN  = "562210447974398951"  >> how did he get to that value?
+// the difference is now in favor of Nick	 WEI:    -331441217205168181      or 0.331441217205168181 in favor of Nick > what value is he adding?
+
+//although not exactly right, Nick Seems to have added tx1 ("230769230769230770") and tx5 ("333333333333333334") , 
+//which yelds 564102564102564104
+//which is just 1892116128165153 WEI away (or "0.001892116128165153" ETH) from his own result in his json file ("562210447974398951")
+
+//? are there rounding errors?
+//¿did he include an out of gas transaction?
+//¿if the out of gas happens in the middle of the logs, does it mean that it doesn't halt the computation and we should consider it a valid transaction?
+
+//example with the out of gas transaction that Nicks "seems" to have included "0x50f3126d52b788c7cf748cae6611347839970f87daf57cfd846fc967acbcba2e"  "ebWei": "333333333333333334",
+var txTrace = debug.traceTransaction("0x50f3126d52b788c7cf748cae6611347839970f87daf57cfd846fc967acbcba2e");
+var sl = txTrace.structLogs
+var errors = []
+for (l in sl) errors.push( sl[l].errors);
+console.log("\ntx: 0x50f3126d52b788c7cf748cae6611347839970f87daf57cfd846fc967acbcba2e") 	
+console.log("out of gas in index: " + errors.indexOf("Out of gas"));   //176
+console.log("computation continued untill index: " + sl.length);
+console.log("errors: " + JSON.stringify(errors)) 
+
+//trying with a normal out of gas transaction that halts at the out of gas call
+var tx1Trace = debug.traceTransaction("0x07a3d34f3618d4aa042b60f41bff8bb12192540538a179626e31fa27ecf164a1"); 
+var sl1 = tx1Trace.structLogs 
+var errors1 = []
+for (i in sl1) errors.push( sl1[i].errors);
+console.log("\ntx: 0x07a3d34f3618d4aa042b60f41bff8bb12192540538a179626e31fa27ecf164a1") 	
+console.log("\nout of gas in index: " + errors1.indexOf("Out of gas"));   //176
+console.log("computation continued untill index: " + sl1.length);
+console.log("errors: " + JSON.stringify(errors1)) 
+
+
+
+*/  
+
+
+
+//loadScript("./../01_Parse/Web3Utils.js");
+//Web3Utils.isOutOfGas("0x50f3126d52b788c7cf748cae6611347839970f87daf57cfd846fc967acbcba2e")
